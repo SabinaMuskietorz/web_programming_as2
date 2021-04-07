@@ -20,10 +20,7 @@ class EntryPoint {
     $page = $controller->$functionName();
     $output = $this->loadTemplate('../templates/' . $page['template'], $page['variables']);
     $title = $page['title'];
-    /*next line might be wrong, if so replace with next line that is commented out*/
     require '../templates/layout.html.php';
-    /*$templateVars = $this->routes->getLayoutVariables();
-    echo $this->loadTemplate('layout.html.php', $templateVars);*/
 }
 public function loadTemplate($fileName, $templateVars) {
     extract($templateVars);

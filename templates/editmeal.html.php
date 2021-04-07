@@ -1,4 +1,4 @@
-<form action="editdish.php" method="POST">
+<form action="editmeal.php" method="POST">
 
 				<input type="hidden" name="id" value="<?php echo $record['id']; ?>" />
 				<label>Name</label>
