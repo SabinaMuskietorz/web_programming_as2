@@ -1,8 +1,9 @@
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<link rel="stylesheet" href="/styles.css"/>
-		<title>Kate's Kitchen - Home</title>
+		<title>Kate's Kitchen - Admin</title>
 	</head>
 	<body>
 	<header>
@@ -31,24 +32,12 @@
 		</ul>
 
 	</nav>
-<img src="images/randombanner.php"/>
-	<main class="home">
-		<p>Welcome to Kate's Kitchen, we're a family run resturaunt in northampton. Take a look around our site to see our menu!</a></p>
+<img src="/images/randombanner.php"/>
+	<main class="sidebar">
+    </main>
 
-		<h2>Take a look at our menu:</h2>
-				<ul>
-					<li><a href="starters.php">Starters</a></li>
-					<li><a href="mains.php">Mains</a></li>
-					<li><a href="dessert.php">Dessert</a></li>
-
-				</ul>
-			</li>
-
-	</main>
-
-
-	<footer>
-		&copy; Kate's Kitchen 2017
-	</footer>
+<footer>
+    &copy; Kate's Kitchen 2021
+</footer>
 </body>
 </html>
