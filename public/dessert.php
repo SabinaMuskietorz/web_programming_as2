@@ -11,37 +11,16 @@ $content = '
 
 	<section class="right">
 
-	<h1>Starters</h1>
-
-	<ul class="listing">
-
+	<h1>Starters</h1>';
 
 	<?php
-	$pdo = new PDO('mysql:dbname=kitchen;host=127.0.0.1', 'student', 'student');
-	$stmt = $pdo->prepare('SELECT * FROM menu WHERE categoryId = 1');
-
-	$stmt->execute();
-
-
-	foreach ($stmt as $record) {
-		echo '<li>';
-
-		echo '<div class="details">';
-			echo '<h3>£' . $record['price'] . '</h3>';
-		echo '<h2>' . $record['name'] . '</h2>';
-	
-		echo '<p>' . nl2br($record['description']) . '</p>';
-
-
-		echo '</div>';
-		echo '</li>';
-	}
-
+	require 'list.html.php';
 	?>
 
-</ul>
+	
 
-</section>';
-require layout.php;
+
+</section>
+require '../templates/layout.html.php;
 ?>
 

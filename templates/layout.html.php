@@ -3,7 +3,9 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="/styles.css"/>
-		<title>Kate's Kitchen - Admin</title>
+		<title><?php
+        echo $title;
+        ?></title>
 	</head>
 	<body>
 	<header>
@@ -34,6 +36,9 @@
 	</nav>
 <img src="/images/randombanner.php"/>
 	<main class="sidebar">
+        <?php
+        echo $content;
+        ?>
     </main>
 
 <footer>
