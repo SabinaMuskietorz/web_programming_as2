@@ -44,14 +44,14 @@
 
 	<section class="right">
 
-	<h1>Starters</h1>
+	<h1>Desserts</h1>
 
 	<ul class="listing">
 
 
 	<?php
 	$pdo = new PDO('mysql:dbname=kitchen;host=127.0.0.1', 'student', 'student');
-	$stmt = $pdo->prepare('SELECT * FROM menu WHERE categoryId = 1');
+	$stmt = $pdo->prepare('SELECT * FROM menu WHERE categoryId = 3');
 
 	$stmt->execute();
 
