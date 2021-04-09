@@ -1,6 +1,6 @@
 <?php
-$title = 'Delete category';
-$content = '
+$pdo = new PDO('mysql:dbname=job;host=127.0.0.1', 'student', 'student', [PDO::ATTR_ERRMODE =>  PDO::ERRMODE_EXCEPTION ]);
+session_start();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
@@ -9,8 +9,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 
 	header('location: categories.php');
-}';
-require layout.php;
-?>
+}
 
 
