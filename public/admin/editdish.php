@@ -121,6 +121,12 @@ session_start();
 				?>
 
 				</select>
+				<label>Visibility</label>
+				<select name="visibility">
+				<option value="hidden">Hidden</option>
+				<option value="shown">Shown</option>
+
+				</select>
 
 				<input type="submit" name="submit" value="Save" />
 

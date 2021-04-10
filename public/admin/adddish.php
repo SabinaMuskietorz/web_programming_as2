@@ -55,14 +55,15 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 		if (isset($_POST['submit'])) {
 
-		$stmt = $pdo->prepare('INSERT INTO menu (name, description, price, categoryId)
-							   VALUES (:name, :description, :price,  :categoryId)');
+		$stmt = $pdo->prepare('INSERT INTO menu (name, description, price, categoryId, visibility)
+							   VALUES (:name, :description, :price, :categoryId, :visibility)');
 
 		$criteria = [
 			'name' => $_POST['name'],
 			'description' => $_POST['description'],
 			'price' => $_POST['price'],
-			'categoryId' => $_POST['categoryId']
+			'categoryId' => $_POST['categoryId'],
+			'visibility'=> $_POST['visibility']
 		];
 
 		$stmt->execute($criteria);
@@ -99,6 +100,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 					}
 
 				?>
+
+				</select>
+				<label>Visibility</label>
+				<select name="visibility">
+				<option value="hidden">Hidden</option>
+				<option value="shown">Shown</option>
 
 				</select>
 

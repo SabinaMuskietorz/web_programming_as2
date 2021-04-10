@@ -57,6 +57,7 @@
 
 
 	foreach ($stmt as $record) {
+		if ($record['visibility'] == 'shown') {
 		echo '<li>';
 
 		echo '<div class="details">';
@@ -69,6 +70,7 @@
 		echo '</div>';
 		echo '</li>';
 	}
+}
 
 	?>
 
