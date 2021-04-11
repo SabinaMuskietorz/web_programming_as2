@@ -1,7 +1,7 @@
 <?php
-require '../dbconnection.php';
+require '../../dbconnection.php';
 session_start();
-require '../loadTemplate.php';
+require '../../loadTemplate.php';
 $title = 'Add new dish';
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 

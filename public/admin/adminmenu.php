@@ -2,6 +2,7 @@
 require '../loadTemplate.php';
 $title = 'Menu';
 require '../dbconnection.php';
+require '../templates/layout.html.php';
 session_start();
 
 
@@ -42,6 +43,8 @@ session_start();
 
 			echo '</thead>';
 			echo '</table>';
+			
+
 
 		}
 
