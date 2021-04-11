@@ -1,7 +1,8 @@
 <?php
 $pdo = new PDO('mysql:dbname=kitchen;host=127.0.0.1', 'student', 'student', [PDO::ATTR_ERRMODE =>  PDO::ERRMODE_EXCEPTION ]);
 session_start();
-
+require '../loadTemplate.php';
+$title = 'Add new dish';
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 		if (isset($_POST['submit'])) {
@@ -22,10 +23,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		echo 'Dish Added';
 	}
 	else {
-		ob_start();
-		require '../templates/adddish.html.php';
-		$output = ob_get_clean();
-		$title = 'Add new dish';
+		
+		$output = loadTemplate('../templates/adddish.html.php', []);
+		
+		
 		}
 	}
 
@@ -42,6 +43,6 @@ else {
 	</form>
 <?php
 }
-require '../templates.layout.html.php';
+require '../templates/layout.html.php';
 
 
