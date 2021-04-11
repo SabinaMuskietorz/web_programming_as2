@@ -51,26 +51,7 @@
 
 	<?php
 	$pdo = new PDO('mysql:dbname=kitchen;host=127.0.0.1', 'student', 'student');
-	$stmt = $pdo->prepare('SELECT * FROM menu WHERE categoryId = 3');
-
-	$stmt->execute();
-
-
-	foreach ($stmt as $record) {
-		if ($record['visibility'] == 'shown') {
-		echo '<li>';
-
-		echo '<div class="details">';
-			echo '<h3>£' . $record['price'] . '</h3>';
-		echo '<h2>' . $record['name'] . '</h2>';
 	
-		echo '<p>' . nl2br($record['description']) . '</p>';
-
-
-		echo '</div>';
-		echo '</li>';
-	}
-}
 
 	?>
 
