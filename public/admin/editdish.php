@@ -7,32 +7,20 @@ session_start();
 
 
 	if (isset($_POST['submit'])) {
-
-		$stmt = $pdo->prepare('UPDATE dish
-								SET name = :name,
-								    description = :description,
-								    price = :price,
-								    categoryId = :categoryId
-								   WHERE id = :id
-						');
-
-		$criteria = [
+		$record = [
 			'name' => $_POST['name'],
 			'description' => $_POST['description'],
 			'price' => $_POST['price'],
 			'categoryId' => $_POST['categoryId'],
 			'id' => $_POST['id']
 		];
-
-		$stmt->execute($criteria);
-
-
+		update($pdo, 'dish', $record, $primaryKey);
 		echo 'Dish saved';
 	}
 	else {
 		if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-			$dish = findDish($pdo, $_GET['id']);
-			$output = loadTemplate('../../templates/editdish.html.php', ['dish' => $dish]);
+			$dish = find($pdo, 'dish', 'id', $_GET['id']);
+			$output = loadTemplate('../../templates/editdish.html.php', ['dish' => $dish[0]]);
 			$title = 'Edit dish';
 		?>
 

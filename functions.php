@@ -1,15 +1,36 @@
 <?php
-function findDish($pdo, $id) {
-    $stmt = $pdo->prepare('SELECT * FROM dish WHERE id = :id');
-    $stmt->execute(['id' => $id]);
-    return $stmt->fetch();
+function findAll($pdo, $table) {
+    $stmt = $pdo->prepare('SELECT * FROM ' . $table);
+    $stmt->execute(['value' => $value]);
+    return $stmt->fetchAll();
 }
-function insertDish($pdo, $values) {
-    $stmt = $pdo->prepare('INSERT INTO dish (name, description, price, categoryId, visibility)
-							   VALUES (:name, :description, :price, :categoryId, :visibility)');
-    $stmt->execute($values);
+function find($pdo, $table, $field, $value) {
+    $stmt = $pdo->prepare('SELECT * FROM' . $table . 'WHERE' . $field . ' = :value');
+    $stmt->execute(['value' => $value]);
+    return $stmt->fetchAll();
+}
+
+function insert($pdo, $table, $record) {
+    $keys = array_keys($record);
+    $values = implode(', ', $keys);
+    $valuesWithColon = implode(', :', $keys);
+    $stmt = $pdo->prepare('INSERT INTO' . $table . '(' . $values . ') VALUES (:' . $valuesWithColon . ')';
+    $stmt->execute($record);
 }
 function deleteDish($pdo, $id) {
     $stmt = $pdo->prepare('DELETE FROM dish WHERE id = :id');
 	$stmt->execute(['id' => $_POST['id']]);
+}
+function update($pdo, $table, $record, $primaryKey) {
+
+    $query = 'UPDATE' . $table . 'SET ';
+    $parameters = [];
+    foreach($record as $key => $value) {
+        $parameters[] = $key . ' = :' . $key;
+    }
+    $query .= implode(', ', $parameters);
+    $query .= 'WHERE' . $primaryKey . ' = :primaryKey';
+    $record['primaryKey'] = $record[$primaryKey];
+    $stmt = $pdo->prepare($query);
+    $stmt->execute($record);
 }
