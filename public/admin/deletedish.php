@@ -1,12 +1,11 @@
 <?php
-require '../dbconnection.php';
+require '../../dbconnection.php';
+require '../functions.php';
 session_start();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
-	$stmt = $pdo->prepare('DELETE FROM menu WHERE id = :id');
-	$stmt->execute(['id' => $_POST['id']]);
-
+	deleteDish($pdo, $_POST['id']);
 
 	header('location: menu.php');
 }

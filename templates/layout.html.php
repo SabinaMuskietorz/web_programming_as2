@@ -36,7 +36,7 @@
 <img src="images/randombanner.php"/>
 	<main class="home">
         <?php
-        echo $output ?>
+        echo $output; ?>
 
 	</main>
 

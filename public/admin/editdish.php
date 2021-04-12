@@ -1,5 +1,6 @@
 <?php
 require '../loadTemplate.php';
+require '../functions.php';
 require '../dbconnection.php';
 session_start();
 
@@ -30,13 +31,8 @@ session_start();
 	}
 	else {
 		if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-
-			$stmt = $pdo->prepare('SELECT * FROM dish WHERE id = :id');
-
-			$stmt->execute(['id' => $_GET['id']]);
-
-			$dish = $stmt->fetch();
-			$output = loadTemplate('../templates/editdish.html.php', ['dish' => $dish]);
+			$dish = findDish($pdo, $_GET['id']);
+			$output = loadTemplate('../../templates/editdish.html.php', ['dish' => $dish]);
 			$title = 'Edit dish';
 		?>
 

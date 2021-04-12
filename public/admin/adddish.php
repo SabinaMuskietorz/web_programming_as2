@@ -6,33 +6,28 @@ $title = 'Add new dish';
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 		if (isset($_POST['submit'])) {
-
-		$stmt = $pdo->prepare('INSERT INTO menu (name, description, price, categoryId, visibility)
-							   VALUES (:name, :description, :price, :categoryId, :visibility)');
-
-		$criteria = [
+		$values = [
 			'name' => $_POST['name'],
 			'description' => $_POST['description'],
 			'price' => $_POST['price'],
 			'categoryId' => $_POST['categoryId'],
 			'visibility'=> $_POST['visibility']
 		];
-
-		$stmt->execute($criteria);
+		insertDish($pdo, $values);
 
 		echo 'Dish Added';
 	}
 	else {
 		
-		$output = loadTemplate('../templates/adddish.html.php', []);
+		$output = loadTemplate('../../templates/adddish.html.php', []);
 		
 		
 		}
 	}
 
 else {
-	require '../login.htm.php';
+	require '../../templates/login.html.php';
 }
-require '../templates/layout.html.php';
+require '../../templates/layout.html.php';
 
 
