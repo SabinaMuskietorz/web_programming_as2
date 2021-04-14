@@ -17,9 +17,9 @@ function insert($pdo, $table, $record) {
     $stmt = $pdo->prepare('INSERT INTO' . $table . '(' . $values . ') VALUES (:' . $valuesWithColon . ')';
     $stmt->execute($record);
 }
-function deleteDish($pdo, $id) {
-    $stmt = $pdo->prepare('DELETE FROM dish WHERE id = :id');
-	$stmt->execute(['id' => $_POST['id']]);
+function delete($pdo, $table, $field, $value) {
+    $stmt = $pdo->prepare('DELETE FROM' .  $table . 'WHERE' . $field . ' = :value');
+	$stmt->execute(['value' => $value]);
 }
 function update($pdo, $table, $record, $primaryKey) {
 

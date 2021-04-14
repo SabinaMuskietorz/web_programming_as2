@@ -14,7 +14,7 @@ session_start();
 			'categoryId' => $_POST['categoryId'],
 			'id' => $_POST['id']
 		];
-		update($pdo, 'dish', $record, $primaryKey);
+		update($pdo, 'dish', $record, 'id');
 		echo 'Dish saved';
 	}
 	else {

@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
-	deleteDish($pdo, $_POST['id']);
+	delete($pdo, 'dish', 'id', $_POST['id']);
 
 	header('location: menu.php');
 }
