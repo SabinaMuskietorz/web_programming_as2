@@ -1,6 +1,6 @@
 <ul>
 <?php
-foreach ($templateVars['dishes'] as $dish) { 
+foreach ($dishes as $dish) { 
     if ($dish['visibility'] == 'shown') { ?>
     <li>
     <div class="details">

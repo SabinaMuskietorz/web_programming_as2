@@ -1,12 +1,13 @@
 <?php
+session_start();
 require '../loadTemplate.php';
-$title = 'Menu';
+$title = 'Admin';
 require '../dbconnection.php';
 require '../templates/layout.html.php';
-session_start();
 
 
-		if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+
+		if (isset($_SESSION['admin'])) {
 		
 		$output = '<a class="new" href="adddish.php">Add new dish</a>
 
@@ -30,9 +31,14 @@ session_start();
 
          <?php
 		}
+		else if (isset($_SESSION['client'])) {
+			echo 'You are not logged in as admin';
+		}
 
 		else {
+			echo 'You are not logged in. <a href="login.php">Click here to log in</a>';
 			require '../templates/login.html.php';
+
 		}
 	
 ?>

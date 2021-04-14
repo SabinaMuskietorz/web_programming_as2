@@ -30,5 +30,6 @@ session_start();
 		$title = 'Edit dish';
 	}
 	require '../templates/layout.html.php';
+	?>
 	
 
