@@ -34,3 +34,11 @@ function update($pdo, $table, $record, $primaryKey) {
     $stmt = $pdo->prepare($query);
     $stmt->execute($record);
 }
+function save($pdo, $table, $record, $primaryKey) {
+    try {
+        insert($pdo, $table, $record);
+    }
+    catch (Exception $e) {
+        update($pdo, $table, $record, $primaryKey);
+    }
+}

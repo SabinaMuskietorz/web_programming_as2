@@ -1,8 +1,8 @@
 <form action="" method="POST">
 
-    <input type="hidden" name="id" value="<?php echo $currentCategory['id']; ?>" />
+    <input type="hidden" name="id" value="<?= $criteria['categoryId'] ?>" />
     <label>Name</label>
-    <input type="text" name="name" value="<?php echo $currentCategory['name']; ?>" />
+    <input type="text" name="name" value="<?= $criteria['name']; ?>" />
 
 
     <input type="submit" name="submit" value="Save Category" />

@@ -1,110 +1,31 @@
 <?php
+require '../loadTemplate.php';
+require '../functions.php';
 require '../dbconnection.php';
 session_start();
-?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<link rel="stylesheet" href="/styles.css"/>
-		<title>Kate's Kitchen - Admin</title>
-	</head>
-	<body>
-	<header>
-		<section>
-			<aside>
-				<h3>Opening times:</h3>
-				<p>Sun-Thu: 12:00-22:00</p>
-				<p>Fri-Sat: 12:00-23:30</p>
-			</aside>
-			<h1>Kate's Kitchen</h1>
 
-		</section>
-	</header>
-	<nav>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li>Menu
-				<ul>
-					<li><a href="/starters.php">Starters</a></li>
-					<li><a href="/mains.php">Mains</a></li>
-					<li><a href="/dessert.php">Dessert</a></li>
-
-				</ul>
-			</li>
-			<li><a href="/about.html">About Us</a></li>
-		</ul>
-
-	</nav>
-<img src="/images/randombanner.php"/>
-	<main class="sidebar">
-
-
-	<section class="left">
-		<ul>
-			<li><a href="menu.php">Menu</a></li>
-			<li><a href="categories.php">Categories</a></li>
-
-		</ul>
-	</section>
-
-	<section class="right">
-
-	<?php
-
-	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 	if (isset($_POST['submit'])) {
 
-		$stmt = $pdo->prepare('UPDATE category SET name = :name WHERE id = :id ');
-
 		$criteria = [
 			'name' => $_POST['name'],
-			'id' => $_POST['id']
+			'categoryId' => $_POST['categoryId']
 		];
 
-		$stmt->execute($criteria);
+		save($pdo, 'category', $criteria, 'categoryId')
 		echo 'Category Saved';
 	}
 	else {
-				$currentCategory = $pdo->query('SELECT * FROM category WHERE id = ' . $_GET['id'])->fetch();
-			?>
-
-
-				<h2>Edit Category</h2>
-
-				
-
-
-	<?php
-
-
+		if (isset($_GET['categoryId'])) {
+			$category = find($pdo, 'category', 'categoryId', $_GET['categoryId']);
 		}
+		else {
+			$category = false;
+		}
+		$output = loadTemplate('../../templates/editcategory.html.php', ['category' => $category[0]]);
+		$title = 'Edit category';
 	}
-
-	else {
-			?>
-			<h2>Log in</h2>
-
-			<form action="index.php" method="post">
-
-				<label>Password</label>
-				<input type="password" name="password" />
-
-				<input type="submit" name="submit" value="Log In" />
-			</form>
-		<?php
-		}
-
-	?>
-
-
-</section>
-	</main>
-
-	<footer>
-		&copy; Kate's Kitchen 2017
-	</footer>
-</body>
-</html>
+	require '../templates/layout.html.php';
+	
 
 
