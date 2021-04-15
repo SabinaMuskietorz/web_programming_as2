@@ -14,7 +14,7 @@ function insert($pdo, $table, $record) {
     $keys = array_keys($record);
     $values = implode(', ', $keys);
     $valuesWithColon = implode(', :', $keys);
-    $stmt = $pdo->prepare('INSERT INTO' . $table . '(' . $values . ') VALUES (:' . $valuesWithColon . ')';
+    $stmt = $pdo->prepare('INSERT INTO' . $table . '(' . $values . ') VALUES (:' . $valuesWithColon . ')');
     $stmt->execute($record);
 }
 function delete($pdo, $table, $field, $value) {

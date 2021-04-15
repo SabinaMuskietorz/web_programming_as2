@@ -1,7 +1,7 @@
 <?php
-require '../loadTemplate.php';
-require '../functions.php';
-require '../dbconnection.php';
+require '../../loadTemplate.php';
+require '../../functions.php';
+require '../../dbconnection.php';
 session_start();
 
 
@@ -13,8 +13,8 @@ session_start();
 			'description' => $_POST['description'],
 			'price' => $_POST['price'],
 			'categoryId' => $_POST['categoryId'],
-			'visibility' => $_POST['visibility']
-			'id' => $_POST['id']
+			'visibility' => $_POST['visibility'],
+			'id' => $_GET['id']
 		];
 		save($pdo, 'dish', $record, 'id');
 		echo 'Dish saved';
@@ -29,7 +29,7 @@ session_start();
 		$output = loadTemplate('../../templates/editdish.html.php', ['dish' => $dish[0]]);
 		$title = 'Edit dish';
 	}
-	require '../templates/layout.html.php';
+	require '../../templates/layout.html.php';
 	?>
 	
 

@@ -1,23 +1,23 @@
 <?php
-require '../loadTemplate.php';
-require '../functions.php';
-require '../dbconnection.php';
+require '../../loadTemplate.php';
+require '../../functions.php';
+require '../../dbconnection.php';
 session_start();
 
 
 	if (isset($_POST['submit'])) {
-
-		$criteria = [
+ 
+		$templateVars = [
 			'name' => $_POST['name'],
-			'categoryId' => $_POST['categoryId']
+			'id' => $_POST['id']
 		];
 
-		save($pdo, 'category', $criteria, 'categoryId')
+		save($pdo, 'category', $templateVars, 'id');
 		echo 'Category Saved';
 	}
 	else {
-		if (isset($_GET['categoryId'])) {
-			$category = find($pdo, 'category', 'categoryId', $_GET['categoryId']);
+		if (isset($_GET['id'])) {
+			$category = find($pdo, 'category', 'id', $_GET['id']);
 		}
 		else {
 			$category = false;
@@ -25,7 +25,7 @@ session_start();
 		$output = loadTemplate('../../templates/editcategory.html.php', ['category' => $category[0]]);
 		$title = 'Edit category';
 	}
-	require '../templates/layout.html.php';
+	require '../../templates/layout.html.php';
 	
 
 

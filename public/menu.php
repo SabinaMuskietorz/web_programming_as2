@@ -12,7 +12,10 @@ if (isset($_GET['id']))  {
 		 $category = $categoryStmt->fetch();
 		 
 		 $dishesStmt = $pdo->prepare('SELECT * FROM dish WHERE categoryId = :categoryId');
-		$dishesStmt->execute($values);
+		 $criteria = [
+			 'categoryId' => $_GET['categoryId']
+		 ];
+		$dishesStmt->execute($criteria);
 		$dishes = $dishesStmt->fetchAll();
 
 	echo '<h1>' . $category['name'] . ' dishes</h1>';
@@ -83,80 +86,36 @@ else if  (isset($_GET['id']))  {
 		save($pdo, $review, $values, 'idreview');
 		
 		
-		/* $commentStmt->execute($values);
-		 //$comment = $commentStmt->fetchAll();
-		 //print that comment was added
-		 echo '<p><strong>New comment added</strong></p>';
-		 //go to view the added comment
-		 echo '<a href="viewarticles.php?idarticle=' . $_GET['idarticle'] . '">View</a>';
+		$reviewStmt->execute($values);
+		 //$review = $reviewStmt->fetchAll();
+		 //print that review was added
+		 echo '<p><strong>New review added</strong></p>';
+		 //go to view the added review
+		 echo '<a href="menu.php?id=' . $_GET['id'] . '">View</a>';
 
 		 }
 			 else {
-				 //form to add comment
-			 ?>
- <form action="viewarticles.php?idarticle=<?php echo $_GET['idarticle'];?>" method="post">
-	 <label>Comment</label>
-	 <textarea name="comment"></textarea>
-	 <input type='hidden' name='iduser' value="iduser " />
-	 <input type='hidden' name='idarticle' value="<?php  $_GET['idarticle'];?>" />
-
-	 <input type="submit" name="postcomment" value="Post comment" />
- </form>
- <?php
+				 //form to add review
+				 $templateVars = ['dish' => $dish];
+				 $output = loadTemplate('../templates/review.html.php', $templateVars);
 		 }
 	 }
 	 else {
-		 echo '<p>Please <a href="login.php">log in</a> to add comment';
+		 echo '<p>Please <a href="login.php">log in</a> to add review';
 	 }
  }
 else {
-	// if no category has been chosen, print all articles with avability to view the article
-	$articleStmt = $pdo->prepare('SELECT * FROM article');
-	$articleStmt->execute();
+	// if no category has been chosen, print all dishes with avability to view the dish
+	$dishesStmt = $pdo->prepare('SELECT * FROM dish');
+	$dishesStmt->execute();
 	echo '<ul>';
-	foreach ($articleStmt as $article) {
-		echo '<li><a href="viewarticles.php?idarticle=' . $article['idarticle'] . '">' . $article['title'] . '</a></li>';
+	foreach ($dishesStmt as $dish) {
+		echo '<li><a href="menu.php?id=' . $dish['id'] . '">' . $dish['name'] . '</a></li>';
 	}
 	echo '</ul>';
-}
-require '../components/foot.php';
-?>
-*/
-
-
-
-
-
-
-
-
-
-
-
-if (isset($_GET['id']))  {
-	$categoryStmt = $pdo->prepare('SELECT * FROM category WHERE id = :id');
-    $values = [
-		'id' => $_GET['id']
-		 ];       
-		 $categoryStmt->execute($values); 
-		 $category = $categoryStmt->fetch();
-		 
-$dishesstmt = $pdo->prepare('SELECT * FROM dish WHERE categoryId = :categoryId');
-$values = [
-    'categoryId' => $_POST['categoryId']
-     ];       
-
-$dishesstmt->execute($values);
-$dishes = $dishesstmt->fetchAll();
-$templateVars = ['dishes' => $dishes];
-$output = loadTemplate('../templates/list.html.php', $templateVars);
-
-require '../templates/layout.html.php';
-
-
-	}
-else {
-    header('location: /index.php'); 
+	$templateVars = ['dish' => $dish];
+				 $output = loadTemplate('../templates/list.html.php', $templateVars);
+				 require '../templates/layout.html.php';
 }
 ?>
 

@@ -4,7 +4,7 @@
 <?php
 
 	echo '<ul>';
-	foreach ($categoryStmt as $category) {
+	foreach ($categories as $category) {
 		echo '<li><a href="menu.php?id='. $row['id'] . '">' . $row['name'] . '</a></li>';
 	}
 	echo '</ul>';

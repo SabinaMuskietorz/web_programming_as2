@@ -1,6 +1,6 @@
 <ul>
 <?php
-foreach ($dishes as $dish) { 
+foreach ($dishesStmt as $dish) { 
     if ($dish['visibility'] == 'shown') { ?>
     <li>
     <div class="details">
