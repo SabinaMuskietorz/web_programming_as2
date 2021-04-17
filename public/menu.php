@@ -2,8 +2,9 @@
 require '../loadTemplate.php';
 require '../dbconnection.php';
 $title = 'Display menu';
+
 //if category has been chosen, show only the dishes from that category
-if (isset($_GET['id']))  {
+/*if (isset($_GET['id']))  {
 	$categoryStmt = $pdo->prepare('SELECT * FROM category WHERE id = :id');
     $values = [
 		'id' => $_GET['id']
@@ -11,9 +12,9 @@ if (isset($_GET['id']))  {
 		 $categoryStmt->execute($values); 
 		 $category = $categoryStmt->fetch();
 		 
-		 $dishesStmt = $pdo->prepare('SELECT * FROM dish WHERE categoryId = :categoryId');
+		 $dishesStmt = $pdo->prepare('SELECT * FROM dish WHERE id = :id');
 		 $criteria = [
-			 'categoryId' => $_GET['categoryId']
+			 'id' => $_GET['id']
 		 ];
 		$dishesStmt->execute($criteria);
 		$dishes = $dishesStmt->fetchAll();
@@ -27,7 +28,7 @@ if (isset($_GET['id']))  {
 	echo '</ul>';
 }
 // if dish was clicked show its name,description and price
-else if  (isset($_GET['id']))  {
+else*/ if  (isset($_GET['id']))  {
 	$dishesStmt = $pdo->prepare('SELECT * FROM dish WHERE id = :id');
     $values = [
 		'id' => $_GET['id']
@@ -96,7 +97,7 @@ else if  (isset($_GET['id']))  {
 		 }
 			 else {
 				 //form to add review
-				 $templateVars = ['dish' => $dish];
+				 $templateVars = ['review' => $review];
 				 $output = loadTemplate('../templates/review.html.php', $templateVars);
 		 }
 	 }
@@ -106,18 +107,22 @@ else if  (isset($_GET['id']))  {
  }
 else {
 	// if no category has been chosen, print all dishes with avability to view the dish
-	$dishesStmt = $pdo->prepare('SELECT * FROM dish');
+	/*$dishesStmt = $pdo->prepare('SELECT * FROM dish');
 	$dishesStmt->execute();
 	echo '<ul>';
 	foreach ($dishesStmt as $dish) {
 		echo '<li><a href="menu.php?id=' . $dish['id'] . '">' . $dish['name'] . '</a></li>';
 	}
 	echo '</ul>';
-	$templateVars = ['dish' => $dish];
+	$templateVars = ['dish' => $dish];*/
 				 $output = loadTemplate('../templates/list.html.php', $templateVars);
-				 require '../templates/layout.html.php';
+				 
 }
+require '../templates/layout.html.php';
+
+
 ?>
+
 
 
 
