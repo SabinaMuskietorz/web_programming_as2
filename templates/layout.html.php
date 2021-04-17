@@ -31,6 +31,26 @@
 			</li>
 			<li><a href="/about.html">About Us</a></li>
 			<li><a href="/faq.php">FAQ</a></li>
+			<li>
+			<?php
+			/* variables to change the text from log in to log out accordingly
+			if person is logged in or logged out, and to change the file that 
+			user is accesing by clicking on that label */
+			//is person is logged in, set variable to that
+			if(isset($_SESSION['loggedin'])) {
+            $logfilechange = 'logout.php';
+            $loglabelchange = 'Log out';
+			}
+			//else if person is not logged in, set variable to that
+            else {
+            $logfilechange = 'login.php';
+            $loglabelchange = 'Log in';
+			}
+			//print 
+			echo '<li><a href="' .$logfilechange . '">' . $loglabelchange . '</a></li>';
+			?>
+			</li>
+
 
 		</ul>
 
