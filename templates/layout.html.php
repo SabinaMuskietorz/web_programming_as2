@@ -3,7 +3,7 @@
 	<head>
 		<link rel="stylesheet" href="/styles.css"/>
 		<title><?php 
-        echo $title ?>
+        echo $title; ?>
         </title>
 	</head>
 	<body>
@@ -30,6 +30,8 @@
 				</ul>
 			</li>
 			<li><a href="/about.html">About Us</a></li>
+			<li><a href="/faq.php">FAQ</a></li>
+
 		</ul>
 
 	</nav>
