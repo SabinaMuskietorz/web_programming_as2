@@ -17,7 +17,7 @@
 
 		echo '<div class="details">';
 			echo '<h3>£' . $record['price'] . '</h3>';
-            echo '<h2><a href="menu.php?id=' . $record['id'] . '">' . $record['name'] . '</a></h2>';
+            echo '<h2><a href="review.php?id=' . $record['id'] . '">' . $record['name'] . '</a></h2>';
 	
 		echo '<p>' . nl2br($record['description']) . '</p>';
 
