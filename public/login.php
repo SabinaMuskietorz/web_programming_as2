@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
         }
     }
     else { // If the submit button was not pressed, show the log-in form
-        $output = loadTemplate('../../templates/login.html.php',[]);
+        $output = loadTemplate('../templates/login.html.php',[]);
     }
-    require '../templates/layout.php';
+    require '../templates/layout.html.php';
     ?>

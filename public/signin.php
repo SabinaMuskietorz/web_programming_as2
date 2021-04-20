@@ -9,9 +9,10 @@ if (isset($_POST['submit'])) {
     $passStmt= $pdo->prepare('SELECT * FROM user WHERE username = :username');
 	$values = [
 	 'username' => $_POST['username'],
+	 
 	];
 	//encrypt the password
-	$hash = password_hash($password, PASSWORD_DEFAULT);
+	//$hash = password_hash($password, PASSWORD_DEFAULT);
 	$passStmt->execute($values);
 	$user = $passStmt->fetch();
 	//check if user with that username and password is already registered
@@ -23,16 +24,16 @@ if (isset($_POST['submit'])) {
 	else {
         $criteria = [
 			'username' => $_POST['username'],
-			'password' => $_POST['password']
+			'password'=> password_hash($_POST['password'], PASSWORD_DEFAULT)
 		];
 
-		save($pdo, 'user', $criteria, 'iduser')
+		save($pdo, 'user', $criteria, 'iduser');
 		echo 'User saved';
         echo '<p><a href="login.php">Please log in</a></p>';
     }
 }
     else {
-        $output = loadTemplate('../../templates/signin.html.php');
+        $output = loadTemplate('../templates/signin.html.php', []);
         $title = 'Sign in';
     }
     require '../templates/layout.html.php';

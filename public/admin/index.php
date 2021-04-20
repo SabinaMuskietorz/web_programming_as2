@@ -84,7 +84,7 @@ session_start();
 	</main>
 
 	<footer>
-		&copy; Kate's Kitchen 2017
+		&copy; Kate's Kitchen 2021
 	</footer>
 </body>
 </html>

@@ -1,4 +1,6 @@
 <?php
+session_start();
+$_SESSION ['visibility'] = $dish['visibility'];
 require '../loadTemplate.php';
 require '../dbconnection.php';
 $title = 'Kate Kitchen - Mains';
