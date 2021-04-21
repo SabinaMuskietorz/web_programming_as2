@@ -1,7 +1,6 @@
 <?php
 require '../loadTemplate.php';
 require '../dbconnection.php';
-$title = 'Kate Kitchen - Home';
-$output = loadTemplate('../templates/home.html.php', []);
+require '../pages' . $_GET['page'] . '.php';
 require '../templates/layout.html.php';
 ?>

@@ -15,7 +15,7 @@ $categoriesTable = new DatabaseTable($pdo, 'category', 'id');
 		];
 
 		$categoriesTable->save($templateVars);
-		header('location: admin.php');
+		$output = 'Category saved';
 	}
 	else {
 		if (isset($_GET['id'])) {

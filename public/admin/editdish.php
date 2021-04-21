@@ -20,7 +20,7 @@ $dishesTable = new DatabaseTable($pdo, 'dish', 'id');
 			'id' => $_GET['id']
 		];
 		$dishesTable->save($record);
-		header('location: admin.php');
+		$output = 'Dish saved';
 	}
 	else {
 		if (isset($_GET['id'])) {
