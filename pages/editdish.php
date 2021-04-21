@@ -1,10 +1,9 @@
 <?php
 session_start();
 require '../functions/loadTemplate.php';
-require '../classes/DatabaseTable.php';
 require '../../dbconnection.php';
 
-$dishesTable = new DatabaseTable($pdo, 'dish', 'id');
+
 
 
 
