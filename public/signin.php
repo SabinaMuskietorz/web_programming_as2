@@ -5,7 +5,7 @@ require '../functions/loadTemplate.php';
 require '../dbconnection.php';
 require '../classes/DatabaseTable.php';
 
-$usersTable = new DatabaseTable($pdo, 'user', 'iduser')
+
 
 $title = 'Register';
 //if the submit button was clicked
