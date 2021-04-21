@@ -38,7 +38,7 @@ class DishController {
             }
             return [
                 'template' => 'editdish.html.php',
-                'variables' => ['record' = $record],
+                'variables' => ['record' => $record],
                 'title' => 'Edit dish'
             ];
         }

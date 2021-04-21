@@ -2,9 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="/styles.css"/>
-		<title><?php 
-        echo $title; ?>
-        </title>
+		<title><?=$title?></title>
 	</head>
 	<body>
 	<header>
@@ -29,8 +27,8 @@
 
 				</ul>
 			</li>
-			<li><a href="index.php?pages=home">About Us</a></li>
-			<li><a href="index.php?pages=faq">FAQ</a></li>
+			<li><a href="/home">About Us</a></li>
+			<li><a href="/faq">FAQ</a></li>
 			<li>
 			<?php
 			/* variables to change the text from log in to log out accordingly
@@ -57,8 +55,7 @@
 	</nav>
 <img src="/images/randombanner.php"/>
 	<main class="home">
-        <?php
-        echo $output; ?>
+        <?=$output?>
 
 	</main>
 

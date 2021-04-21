@@ -39,7 +39,7 @@ class UserController {
             }
             return [
                 'template' => 'signin.html.php',
-                'variables' => ['templateVars' = $templateVars],
+                'variables' => ['templateVars' => $templateVars],
                 'title' => 'Edit user'
             ];
         }

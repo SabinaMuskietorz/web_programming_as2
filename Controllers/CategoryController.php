@@ -46,7 +46,7 @@ class CategoryController {
             }
             return [
                 'template' => 'editcategory.html.php',
-                'variables' => ['templateVars' = $templateVars],
+                'variables' => ['templateVars' => $templateVars],
                 'title' => 'Edit category'
             ];
         }

@@ -37,7 +37,7 @@ class ReviewController {
             }
             return [
                 'template' => 'editreview.html.php',
-                'variables' => ['values' = $values],
+                'variables' => ['values' => $values],
                 'title' => 'Edit review'
             ];
         }
