@@ -4,10 +4,20 @@ class CategoryController {
     public function __construct($categoriesTable) {
         $this->categoriesTable = $categoriesTable;
     }
+    public function list() {
+        $categories = $this->categoriesTable->findAll();
+        return [
+            'template' => 'categorylist.html.php',
+            'title' => 'Category list',
+            'variables' => [
+                'categories' => $categories
+            ]
+            ];
+    }
     public function delete() {
         $this->categoriesTable->delete($_POST['id']);
 
-        header('location: /admin');
+        header('location: /category/list');
     }
     public function home(){
         return [
@@ -23,12 +33,12 @@ class CategoryController {
                 'id' => $_POST['id']
             ];
     
-            $categoriesTable->save($templateVars);
-            $output = 'Category saved';
+            $this->categoriesTable->save($templateVars);
+            header('location: /category/list');
         }
         else {
             if (isset($_GET['id'])) {
-                $result = $categoriesTable->find('id', $_GET['id']);
+                $result = $this->ScategoriesTable->find('id', $_GET['id']);
                 $templateVars = $result[0];
             }
             else {
