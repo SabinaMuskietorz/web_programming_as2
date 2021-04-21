@@ -3,10 +3,14 @@
 session_start();
 require '../loadTemplate.php';
 require '../dbconnection.php';
+require '../DatabaseTable.php';
+
+$usersTable = new DatabaseTable($pdo, 'user', 'iduser')
+
 $title = 'Register';
 //if the submit button was clicked
 if (isset($_POST['submit'])) {
-    $passStmt= $pdo->prepare('SELECT * FROM user WHERE username = :username');
+    $passStmt= $this->pdo->prepare('SELECT * FROM user WHERE username = :username');
 	$values = [
 	 'username' => $_POST['username'],
 	 
@@ -27,7 +31,7 @@ if (isset($_POST['submit'])) {
 			'password'=> password_hash($_POST['password'], PASSWORD_DEFAULT)
 		];
 
-		save($pdo, 'user', $criteria, 'iduser');
+		$usersTable->save($criteria);
 		echo 'User saved';
         echo '<p><a href="login.php">Please log in</a></p>';
     }

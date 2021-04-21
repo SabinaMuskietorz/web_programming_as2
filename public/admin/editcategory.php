@@ -1,8 +1,10 @@
 <?php
-require '../../loadTemplate.php';
-require '../../functions.php';
-require '../../dbconnection.php';
 session_start();
+require '../../loadTemplate.php';
+require '../../DatabaseTable.php';
+require '../../dbconnection.php';
+
+$categoriesTable = new DatabaseTable($pdo, 'category', 'id');
 
 
 	if (isset($_POST['submit'])) {
@@ -12,15 +14,16 @@ session_start();
 			'id' => $_POST['id']
 		];
 
-		save($pdo, 'category', $templateVars, 'id');
-		echo 'Category Saved';
+		$categoriesTable->save($templateVars);
+		header('location: admin.php');
 	}
 	else {
 		if (isset($_GET['id'])) {
-			$category = find($pdo, 'category', 'id', $_GET['id']);
+			$result = $categoriesTable->find('id', $_GET['id']);
+			$templateVars = $result[0];
 		}
 		else {
-			$category = false;
+			$templateVars = false;
 		}
 		$output = loadTemplate('../../templates/editcategory.html.php', ['category' => $category[0]]);
 		$title = 'Edit category';

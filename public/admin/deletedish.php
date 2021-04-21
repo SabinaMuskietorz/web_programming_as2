@@ -1,11 +1,12 @@
 <?php
 require '../../dbconnection.php';
-require '../../functions.php';
+require '../../DatabaseTable.php';
 session_start();
+$disesTable = new DatabaseTable($pdo, 'dish', 'id');
 
-	delete($pdo, 'dish', 'id', $_POST['id']);
+$disesTable->delete('id', $_POST['id']);
 
-	header('location: menu.php');
+	header('location: admin.php');
 
 
 

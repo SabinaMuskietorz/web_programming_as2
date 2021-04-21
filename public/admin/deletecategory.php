@@ -1,9 +1,12 @@
 <?php
-require '../../dbconnection.php';
-require '../../functions.php';
 session_start();
+require '../../dbconnection.php';
+require '../../DatabaseTable.php';
 
-	delete($pdo, 'category', 'categoryId', $_POST['categoryId']);
+$categoriesTable = new DatabaseTable($pdo, 'category', 'id');
+
+
+	$categoriesTable->delete('id', $_POST['id']);
 
 
 	header('location: categories.php');

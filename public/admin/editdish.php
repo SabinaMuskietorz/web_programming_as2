@@ -1,8 +1,11 @@
 <?php
-require '../../loadTemplate.php';
-require '../../functions.php';
-require '../../dbconnection.php';
 session_start();
+require '../../loadTemplate.php';
+require '../../DatabaseTable.php';
+require '../../dbconnection.php';
+
+$dishesTable = new DatabaseTable($pdo, 'dish', 'id');
+
 
 
 
@@ -16,12 +19,12 @@ session_start();
 			'visibility' => $_POST['visibility'],
 			'id' => $_GET['id']
 		];
-		save($pdo, 'dish', $record, 'id');
-		echo 'Dish saved';
+		$dishesTable->save($record);
+		header('location: admin.php');
 	}
 	else {
 		if (isset($_GET['id'])) {
-			$dish = find($pdo, 'dish', 'id', $_GET['id']);
+			$dish = $dishesTable->find('id', $_GET['id']);
 		}
 		else {
 			$dish = false;
