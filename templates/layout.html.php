@@ -23,14 +23,14 @@
 			<li><a href="/">Home</a></li>
 			<li>Menu
 				<ul>
-					<li><a href="/starters.php">Starters</a></li>
-					<li><a href="/mains.php">Mains</a></li>
-					<li><a href="/dessert.php">Dessert</a></li>
+					<li><a href="index.php?pages=starters">Starters</a></li>
+					<li><a href="index.php?pages=mains">Mains</a></li>
+					<li><a href="index.php?pages=dessert">Dessert</a></li>
 
 				</ul>
 			</li>
-			<li><a href="/about.html">About Us</a></li>
-			<li><a href="/faq.php">FAQ</a></li>
+			<li><a href="index.php?pages=home">About Us</a></li>
+			<li><a href="index.php?pages=faq">FAQ</a></li>
 			<li>
 			<?php
 			/* variables to change the text from log in to log out accordingly
