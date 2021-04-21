@@ -19,7 +19,6 @@ class ReviewController {
         if (isset($_POST['submit'])) {
 
             $values = [
-                'id'
                 'date' => $date,
                 'reviewText' => $_POST['reviewText'],
                 'userId' => $_SESSION['id'],
@@ -31,15 +30,15 @@ class ReviewController {
         }
         else {
             if (isset($_GET['id'])) {
-                $dish = $dishesTable->find('id', $_GET['id']);
+                $review = $reviewsTable->find('idreview', $_GET['idreview']);
             }
             else {
-                $dish = false;
+                $review = false;
             }
             return [
-                'template' => 'editdish.html.php',
-                'variables' => ['record' = $record],
-                'title' => 'Edit dish'
+                'template' => 'editreview.html.php',
+                'variables' => ['values' = $values],
+                'title' => 'Edit review'
             ];
         }
     }
