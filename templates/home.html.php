@@ -3,9 +3,9 @@
 
 <h2>Take a look at our menu:</h2>
 <ul>
-	<li><a href="index.php?pages=starters">Starters</a></li>
-	<li><a href="index.php?pages=mains">Mains</a></li>
-	<li><a href="index.php?pages=dessert">Dessert</a></li>
+	<li><a href="/starters">Starters</a></li>
+	<li><a href="/mains">Mains</a></li>
+	<li><a href="/dessert">Dessert</a></li>
 
 </ul>
 </li>

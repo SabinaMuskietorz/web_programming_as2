@@ -1,4 +1,4 @@
-<form action="signin.php" method="post">
+<form action="/signin" method="post">
 			<label>Username</label>
 			<input type="text"  name="username" />
 			<label>Password</label>

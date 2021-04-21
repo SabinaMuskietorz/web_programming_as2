@@ -1,4 +1,4 @@
-<form action="review.php?id=<?php echo $_GET['id'];?>" method="post">
+<form action="/review?id=<?php echo $_GET['id'];?>" method="post">
 	 <label>Review</label>
 	 <textarea name="review"></textarea>
 	 <input type='hidden' name='userId' value="userId " />

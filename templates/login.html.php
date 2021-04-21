@@ -1,6 +1,6 @@
 <h2>Log in</h2>
 
-<form action="index.php" method="post">
+<form action="/login" method="post">
 <label>Username</label>
 <input type="username" name="username" />
     <label>Password</label>
