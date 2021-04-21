@@ -1,7 +1,7 @@
 <?php
 //this is a log in page
 session_start();
-require '../loadTemplate.php';
+require '../functions/loadTemplate.php';
 require '../dbconnection.php';
 $title = 'Log in';
 if (isset($_POST['submit'])) {

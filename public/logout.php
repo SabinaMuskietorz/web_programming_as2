@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require '../loadTemplate.php';
+require '../functions/loadTemplate.php';
 require '../dbconnection.php';
 $title = 'Log out';
 require '../templates/layout.html.php';

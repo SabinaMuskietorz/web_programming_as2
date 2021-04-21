@@ -1,6 +1,6 @@
 <?php
 require '../../dbconnection.php';
-require '../../DatabaseTable.php';
+require '../classes/DatabaseTable.php';
 session_start();
 $disesTable = new DatabaseTable($pdo, 'dish', 'id');
 

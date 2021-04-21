@@ -1,9 +1,9 @@
 <?php
 // register new users
 session_start();
-require '../loadTemplate.php';
+require '../functions/loadTemplate.php';
 require '../dbconnection.php';
-require '../DatabaseTable.php';
+require '../classes/DatabaseTable.php';
 
 $usersTable = new DatabaseTable($pdo, 'user', 'iduser')
 

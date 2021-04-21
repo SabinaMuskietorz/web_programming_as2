@@ -1,7 +1,7 @@
 <?php
 session_start();
 require '../../dbconnection.php';
-require '../../DatabaseTable.php';
+require '../classes/DatabaseTable.php';
 
 $categoriesTable = new DatabaseTable($pdo, 'category', 'id');
 

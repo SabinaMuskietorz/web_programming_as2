@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../loadTemplate.php';
+require '../functions/loadTemplate.php';
 $title = 'Admin';
 require '../dbconnection.php';
 require '../templates/layout.html.php';
