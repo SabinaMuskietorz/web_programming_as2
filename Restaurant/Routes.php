@@ -11,9 +11,9 @@ $categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id');
 $reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'idreview');
 
 $controllers = [];
+$controllers['category'] = new Restaurant\Controllers\Category($categoriesTable);
 $controllers['user'] = new Restaurant\Controllers\User($usersTable);
 $controllers['dish'] = new Restaurant\Controllers\Dish($dishesTable);
-$controllers['category'] = new Restaurant\Controllers\Category($categoriesTable);
 $controllers['review'] = new Restaurant\Controllers\Review($reviewsTable);
 return $controllers[$name];
     }
