@@ -1,6 +1,6 @@
 <?php
 namespace Restaurant\Controllers;
-class ReviewController {
+class Review {
     private $reviewsTable;
     public function __construct($reviewsTable) {
         $this->reviewsTable = $reviewsTable;

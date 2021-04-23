@@ -1,6 +1,6 @@
 <?php
 namespace Restaurant\Controllers;
-class UserController {
+class User {
     private $usersTable;
     public function __construct($usersTable) {
         $this->usersTable = $usersTable;

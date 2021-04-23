@@ -1,6 +1,6 @@
 <?php
 namespace Restaurant\Controllers;
-class CategoryController {
+class Category {
     private $categoriesTable;
     public function __construct($categoriesTable) {
         $this->categoriesTable = $categoriesTable;

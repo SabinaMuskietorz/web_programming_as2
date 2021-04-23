@@ -1,6 +1,6 @@
 <?php
 namespace Restaurant\Controllers;
-class DishController {
+class Dish {
     private $dishesTable;
     public function __construct($dishesTable) {
         $this->dishesTable = $dishesTable;
