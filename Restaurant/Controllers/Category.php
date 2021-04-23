@@ -1,4 +1,5 @@
 <?php
+namespace Restaurant\Controllers;
 class CategoryController {
     private $categoriesTable;
     public function __construct($categoriesTable) {

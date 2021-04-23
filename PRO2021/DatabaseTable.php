@@ -1,4 +1,5 @@
 <?php
+namespace PRO2021;
 class DatabaseTable {
     private $pdo;
     private $table;

@@ -1,4 +1,5 @@
 <?php
+namespace Restaurant\Controllers;
 class UserController {
     private $usersTable;
     public function __construct($usersTable) {

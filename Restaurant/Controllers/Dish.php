@@ -1,4 +1,5 @@
 <?php
+namespace Restaurant\Controllers;
 class DishController {
     private $dishesTable;
     public function __construct($dishesTable) {

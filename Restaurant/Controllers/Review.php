@@ -1,4 +1,5 @@
 <?php
+namespace Restaurant\Controllers;
 class ReviewController {
     private $reviewsTable;
     public function __construct($reviewsTable) {
