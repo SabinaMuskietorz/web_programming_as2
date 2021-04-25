@@ -16,11 +16,11 @@ class Review {
             'title' => 'Kate kitchen'
         ];
     }
-    public function edit() {
-        if (isset($_POST['submit'])) {
+    public function editSubmit() {
+        $date = new DateTime();
 
             $values = [
-                'date' => $date,
+                'date' => $date->format('Y-m-d H:i:s'),
                 'reviewText' => $_POST['reviewText'],
                 'userId' => $_SESSION['id'],
                 'dishId' => $_GET['dishId'],
@@ -29,9 +29,9 @@ class Review {
             $this->$reviewsTable->save($values);
             $output = 'Review saved';
         }
-        else {
-            if (isset($_GET['id'])) {
-                $review = $reviewsTable->find('idreview', $_GET['idreview']);
+        public function edit() {
+            if (isset($_GET['idreview'])) {
+                $review = $this->reviewsTable->find('idreview', $_GET['idreview']);
             }
             else {
                 $review = false;
@@ -43,4 +43,3 @@ class Review {
             ];
         }
     }
-}

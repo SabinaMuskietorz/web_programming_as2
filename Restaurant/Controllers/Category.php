@@ -26,8 +26,7 @@ class Category {
             'title' => 'Kate kitchen'
         ];
     }
-    public function edit() {
-        if (isset($_POST['submit'])) {
+    public function editSubmit() {
  
             $templateVars = [
                 'name' => $_POST['name'],
@@ -37,7 +36,7 @@ class Category {
             $this->categoriesTable->save($templateVars);
             header('location: /category/list');
         }
-        else {
+        public function edit() {
             if (isset($_GET['id'])) {
                 $result = $this->ScategoriesTable->find('id', $_GET['id']);
                 $templateVars = $result[0];

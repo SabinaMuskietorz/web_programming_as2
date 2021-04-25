@@ -16,32 +16,33 @@ class Dish {
             'title' => 'Kate kitchen'
         ];
     }
-    public function edit() {
-        if (isset($_POST['submit'])) {
 
-            $record = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-                'price' => $_POST['price'],
-                'categoryId' => $_POST['categoryId'],
-                'visibility' => $_POST['visibility'],
-                'id' => $_GET['id']
-            ];
-            $this->$dishesTable->save($record);
-            $output = 'Dish saved';
+
+
+    public function editSubmit() {
+        
+        $record = [
+            'name' => $_POST['name'],
+            'description' => $_POST['description'],
+            'price' => $_POST['price'],
+            'categoryId' => $_POST['categoryId'],
+            'visibility' => $_POST['visibility'],
+            'id' => $_GET['id']
+        ];
+        $this->$dishesTable->save($record);
+        $output = 'Dish saved';
+        }
+        public function edit() {
+        if (isset($_GET['id'])) {
+            $dish = $this->dishesTable->find('id', $_GET['id']);
         }
         else {
-            if (isset($_GET['id'])) {
-                $dish = $dishesTable->find('id', $_GET['id']);
-            }
-            else {
-                $dish = false;
-            }
-            return [
-                'template' => 'editdish.html.php',
-                'variables' => ['record' => $record],
-                'title' => 'Edit dish'
-            ];
+            $dish = false;
         }
+        return [
+            'template' => 'editdish.html.php',
+            'variables' => ['record' => $record],
+            'title' => 'Edit dish'
+        ];
     }
 }

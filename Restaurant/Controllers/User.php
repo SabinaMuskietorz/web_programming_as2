@@ -16,8 +16,7 @@ class User {
             'title' => 'Kate kitchen'
         ];
     }
-    public function edit() {
-        if (isset($_POST['submit'])) {
+    public function editSubmit() {
  
             $templateVars = [
                 'iduser' => $_POST['id'],
@@ -27,12 +26,12 @@ class User {
 
             ];
     
-            $usersTable->save($templateVars);
+            $this->usersTable->save($templateVars);
             $output = 'User saved';
         }
-        else {
-            if (isset($_GET['id'])) {
-                $result = $usersTable->find('iduser', $_GET['iduser']);
+        public function edit() {
+            if (isset($_GET['iduser'])) {
+                $result = $this->usersTable->find('iduser', $_GET['iduser']);
                 $templateVars = $result[0];
             }
             else {
@@ -45,4 +44,3 @@ class User {
             ];
         }
     }
-}

@@ -26,6 +26,7 @@ class EntryPoint {
 
 	    $page = $controller->$functionName();
 		
+		
 
 		$output = $this->loadTemplate('../templates/' . $page['template'], $page['variables']);
 
