@@ -5,9 +5,15 @@ class Routes implements \PRO2021\Routes {
 	public function getController($name) {
 		require '../dbconnection.php';
 		$usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'iduser');
-		$dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id');
+		$dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', '\Restaurant\Dish', [$categoriesTable]);
 		$categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id');
-		$reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'idreview');
+		$reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'idreview', '\Restaurant\Review', [$usersTable]);
+
+
+
+
+
+
 		$controllers = [];
 		$controllers['category'] = new Restaurant\Controllers\Category($categoriesTable);
 		$controllers['user'] = new Restaurant\Controllers\User($usersTable);

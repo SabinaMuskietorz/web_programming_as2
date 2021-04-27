@@ -15,3 +15,6 @@ foreach ($dishes as $dish) {
     <?php
     }
     ?>
+
+
+    /* zmien arrays to objects $joke[‘joketext’] becomes $joke->jokeText */

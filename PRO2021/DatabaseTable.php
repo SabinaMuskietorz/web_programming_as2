@@ -5,20 +5,24 @@ class DatabaseTable {
     private $table;
     private $primaryKey;
 
-    public function __construct($pdo, $table, $primaryKey) {
+    public function __construct($pdo, $table, $primaryKey, $entityClass, $entityConstructor) {
         $this->pdo = $pdo;
         $this->table = $table;
         $this->primaryKey = $primaryKey;
+        $this->entityClass = $entityClass;
+        $this->entityConstructor = $entityConstructor;
     }
 
 
 public function findAll() {
     $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table);
+    $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
     $stmt->execute(['value' => $value]);
     return $stmt->fetchAll();
 }
 public function find($field, $value) {
     $stmt = $this->pdo->prepare('SELECT * FROM' . $this->table . 'WHERE' . $field . ' = :value');
+    $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
     $stmt->execute(['value' => $value]);
     return $stmt->fetchAll();
 }
