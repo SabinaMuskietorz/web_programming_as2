@@ -15,3 +15,4 @@ class Review {
 		return $this->usersTable->find('id', $this->iduser)[0];
 	}
 }
+?>

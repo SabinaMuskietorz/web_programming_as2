@@ -4,10 +4,10 @@ namespace Restaurant;
 class Routes implements \PRO2021\Routes {
 	public function getController($name) {
 		require '../dbconnection.php';
-		$usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'iduser');
-		$dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', '\Restaurant\Dish', [$categoriesTable]);
-		$categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id');
-		$reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'idreview', '\Restaurant\Review', [$usersTable]);
+		$usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'iduser',  $entityClass = 'stdclass', $entityConstructor = []);
+		$dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', 'Restaurant\Entity\Dish', [$categoriesTable]);
+		$categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id',  $entityClass = 'stdclass', $entityConstructor = []);
+		$reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'idreview', '\Restaurant\Entity\Review', [$usersTable]);
 
 
 

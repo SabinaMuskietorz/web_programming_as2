@@ -17,3 +17,4 @@ class Dish {
 		return $this->categoriesTable->find('id', $this->categoryid)[0];
 	}
 }
+?>
