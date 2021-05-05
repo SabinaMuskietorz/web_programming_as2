@@ -6,7 +6,7 @@
 
 
 	<?php
-	$stmt = $pdo->prepare('SELECT * FROM dish WHERE categoryId ='$dish->getCategory()->categoryId');
+	$stmt = $pdo->prepare('SELECT * FROM dish WHERE categoryId = '$dish->getCategory()->categoryId'' );
 
 	$stmt->execute();
 
