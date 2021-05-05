@@ -35,7 +35,7 @@ class EntryPoint {
 		require '../templates/layout.html.php';
 	}
 
-	public function loadTemplate($fileName, $templateVars) {
+	public function loadTemplate($fileName, $templateVars=[]) {
 		extract($templateVars);
 		ob_start();
 		require $fileName;

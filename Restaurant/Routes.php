@@ -5,20 +5,17 @@ class Routes implements \PRO2021\Routes {
 	public function getController($name) {
 		require '../dbconnection.php';
 		$usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'iduser',  $entityClass = 'stdclass', $entityConstructor = []);
-		$dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', 'Restaurant\Entity\Dish', [$categoriesTable]);
 		$categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id',  $entityClass = 'stdclass', $entityConstructor = []);
+		$dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', 'Restaurant\Entity\Dish', [$categoriesTable]);
 		$reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'idreview', '\Restaurant\Entity\Review', [$usersTable]);
 
-
-
-
-
-
+     
 		$controllers = [];
-		$controllers['category'] = new Restaurant\Controllers\Category($categoriesTable);
-		$controllers['user'] = new Restaurant\Controllers\User($usersTable);
-		$controllers['dish'] = new Restaurant\Controllers\Dish($dishesTable);
-		$controllers['review'] = new Restaurant\Controllers\Review($reviewsTable);
+		$controllers['category'] = new \Restaurant\Controllers\Category($categoriesTable);
+		$controllers['user'] = new \Restaurant\Controllers\User($usersTable);
+		$controllers['dish'] = new \Restaurant\Controllers\Dish($dishesTable);
+		$controllers['review'] = new \Restaurant\Controllers\Review($reviewsTable);
+		$controllers['page'] = new \Restaurant\Controllers\Page;
 		return $controllers[$name];
 	}
     

@@ -13,8 +13,11 @@ class Dish {
     public function home(){
         return [
             'template' => 'home.html.php',
-            'title' => 'Kate kitchen'
+            'title' => 'Kate kitchen',
+            'variables' => []
+        
         ];
+
     }
 
 
