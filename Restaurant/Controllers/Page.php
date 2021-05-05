@@ -11,9 +11,13 @@ class Page {
     function dish() {
 
     }
-    function faq() {
-
-    }
+    public function faq() {
+        return [
+        'template' => 'faq.html.php',
+        'title' => 'FAQ',
+        'variables' => []
+      ];
+      }
     function home() {
 
     }
@@ -29,3 +33,4 @@ class Page {
     function signin() {
 
     }
+}
