@@ -43,19 +43,14 @@ class User {
                 'title' => 'Edit user'
             ];
         }
-        public function login() {
+        public function loginSubmit() {
             if (isset($_POST['submit'])) {
                 //find the right user in database, where the username matches the typed in username by the user
-                $passStmt= $pdo->prepare('SELECT * FROM user WHERE username = :username');
-                $values = [
-                 'username' => $_POST['username']
-                ];
-                //encrypt the password
-                $hash = password_hash($password, PASSWORD_DEFAULT);
-                $passStmt->execute($values);
-                $user = $passStmt->fetch();
+                $passStmt= $this->usersTable->find('username', $_POST['username']);
+                
+                $user = $passStmt[0]??NULL;
                 //check if password matches the username in the database 
-                if (password_verify($_POST['password'], $user['password'])) {
+                if (password_verify($_POST['password'], $user->password)) {
                     //if yes, person is logged in, and we can set the sessions, and they can store variables for future use
                     $_SESSION ['loggedin'] = true;
                     $_SESSION ['id'] = $user['iduser'];
@@ -70,25 +65,32 @@ class User {
                         /* if person is an admin it sets the session to admin and prints hello to admin
                         and directs them to admin page */
                         $_SESSION ['admin'] = true;
-                       echo '<p>Welcome back<strong> ' . $_POST['username'] . '</strong></p>';
-                       echo '<p><a href="index.php/admin">Go to admin</a>';
+                       
                        }
                    else {
                        //if person is a normal user it prints hello to user and sets session to client
                     $_SESSION ['client'] = true;
-                    echo '<p>Welcome back<strong> ' . $_POST['username'] . '</strong></p>';
-                    echo '<p><a href="index.php">Home</a>';
+                   
                     }
                 }
                 //If they didn't type in correct credentials display an error message
                 else {
-                    echo '<p>You did not enter the correct username and password</p>';
-                    echo '<p><a href="index.php/login">Log in</a>';
+                    $errors = [];
+                    $errors[] = 'Login failed';
+                    return $this->login($errors);
+                    
                     }
+
                 }
-                else { // If the submit button was not pressed, show the log-in form
-                    $output = loadTemplate('../templates/login.html.php',[]);
-                }
+               
+                header('location: /page/home');
+            }
+            public function login($errors=[]) {
+                return [
+                    'template' => 'login.html.php',
+                    'variables' => ['errors' => $errors],
+                    'title' => 'Log in'
+                ];
             }
             public function logout() {
                 session_destroy();

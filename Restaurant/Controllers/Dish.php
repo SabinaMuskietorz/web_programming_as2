@@ -19,6 +19,16 @@ class Dish {
         ];
 
     }
+    public function list() {
+        $dishes = $this->dishesTable->find( 'categoryId', $_GET['id']);
+        return [
+            'template' => 'list.html.php',
+            'title' => 'Menu',
+            'variables' => [
+                'dishes' => $dishes
+            ] 
+            ];
+        }
 
 
 

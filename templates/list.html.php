@@ -1,6 +1,8 @@
 <ul>
+<h2><?=$dishes[0]->getCategory()->name?></h2>
 <?php
-foreach ($dishesStmt as $dish) { 
+
+foreach ($dishes as $dish) { 
     if ($dish->visibility == 'shown') { ?>
     <li>
     <div class="details">

@@ -2,13 +2,11 @@
 namespace Restaurant\Controllers;
 class Page {
     function admin() {
-
-    }
-    function categories() {
-
-
-    }
-    function dish() {
+      return [
+        'template' => 'adminlist.html.php',
+        'variables' => [],
+        'title' => 'Admin'
+    ];
 
     }
     public function faq() {
@@ -19,18 +17,9 @@ class Page {
       ];
       }
     function home() {
-
-    }
-    function login() {
-
-    }
-    function logout() {
-
-    }
-    function review() {
-
-    }
-    function signin() {
-
+      return [
+        'template' => 'home.html.php',
+        'title' => 'Kate kitchen'
+    ];
     }
 }
