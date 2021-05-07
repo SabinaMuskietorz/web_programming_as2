@@ -47,21 +47,24 @@ class User {
             if (isset($_POST['submit'])) {
                 //find the right user in database, where the username matches the typed in username by the user
                 $passStmt= $this->usersTable->find('username', $_POST['username']);
-                
+                var_dump($passStmt);
                 $user = $passStmt[0]??NULL;
+                if ($user == NULL) {
+                    return $this->login();
+                }
                 //check if password matches the username in the database 
                 if (password_verify($_POST['password'], $user->password)) {
                     //if yes, person is logged in, and we can set the sessions, and they can store variables for future use
                     $_SESSION ['loggedin'] = true;
-                    $_SESSION ['id'] = $user['iduser'];
-                    $_SESSION ['name'] = $user['username'];
-                    $_SESSION ['role'] = $user['role'];
+                    $_SESSION ['id'] = $user->iduser;
+                    $_SESSION ['name'] = $user->username;
+                    $_SESSION ['role'] = $user->role;
             
                     /*check if person is an admin.
                     In that case using === because want to check if :
                     $a === $b	Identical, so if $a is equal to $b, and they are of the same type.
                     https://www.php.net/manual/en/language.operators.comparison.php*/
-                    if($user['role'] === 'admin') {
+                    if($user->role === 'admin') {
                         /* if person is an admin it sets the session to admin and prints hello to admin
                         and directs them to admin page */
                         $_SESSION ['admin'] = true;
@@ -94,7 +97,7 @@ class User {
             }
             public function logout() {
                 session_destroy();
-                echo '<p>You are now logged out</p>';
+                header('location: /page/home');
 
             }
     }

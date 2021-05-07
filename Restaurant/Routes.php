@@ -2,19 +2,24 @@
 namespace Restaurant;
 
 class Routes implements \PRO2021\Routes {
+	//global variables
+	private $usersTable;
+	private $categoriesTable;
+	private $dishesTable;
+	private $reviewsTable;
 	public function getController($name) {
 		require '../dbconnection.php';
-		$usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'iduser',  '\Restaurant\Entity\User', $entityConstructor = []);
-		$categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id', '\Restaurant\Entity\Category', $entityConstructor = []);
-		$dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', '\Restaurant\Entity\Dish', [$categoriesTable]);
-		$reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'idreview', '\Restaurant\Entity\Review', [$usersTable]);
-
+		$this->usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'iduser',  '\Restaurant\Entity\User', $entityConstructor = []);
+		$this->categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id', '\Restaurant\Entity\Category', $entityConstructor = []);
+		$this->dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', '\Restaurant\Entity\Dish', [$this->categoriesTable]);
+		$this->reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'idreview', '\Restaurant\Entity\Review', [$this->usersTable]);
+        
      
 		$controllers = [];
-		$controllers['category'] = new \Restaurant\Controllers\Category($categoriesTable);
-		$controllers['user'] = new \Restaurant\Controllers\User($usersTable);
-		$controllers['dish'] = new \Restaurant\Controllers\Dish($dishesTable);
-		$controllers['review'] = new \Restaurant\Controllers\Review($reviewsTable);
+		$controllers['category'] = new \Restaurant\Controllers\Category($this->categoriesTable);
+		$controllers['user'] = new \Restaurant\Controllers\User($this->usersTable);
+		$controllers['dish'] = new \Restaurant\Controllers\Dish($this->dishesTable, $this->reviewsTable);
+		$controllers['review'] = new \Restaurant\Controllers\Review($this->reviewsTable);
 		$controllers['page'] = new \Restaurant\Controllers\Page();
 		return $controllers[$name];
 	}
@@ -22,9 +27,13 @@ class Routes implements \PRO2021\Routes {
 	public function getDefaultRoute() {
 		return 'dish/home';
 	}
+	public function getCategories() {
+		return $this->categoriesTable->findAll();
+	}
 
 	
 	public function checkLogin($route) {
+		session_start();
 		$loginRoutes = [];
 
 		$loginRoutes['/review/editSubmit'] =  true;

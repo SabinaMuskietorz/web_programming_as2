@@ -17,11 +17,11 @@ class DatabaseTable {
 public function findAll() {
     $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table);
     $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
-    $stmt->execute(['value' => $value]);
+    $stmt->execute();
     return $stmt->fetchAll();
 }
 public function find($field, $value) {
-    $stmt = $this->pdo->prepare('SELECT * FROM' . $this->table . 'WHERE' . $field . ' = :value');
+    $stmt = $this->pdo->prepare('SELECT * FROM   '   .$this->table. '   WHERE   ' .$field. '    = :value    ');
     $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
     $stmt->execute(['value' => $value]);
     return $stmt->fetchAll();
@@ -31,11 +31,11 @@ public function insert($record) {
     $keys = array_keys($record);
     $values = implode(', ', $keys);
     $valuesWithColon = implode(', :', $keys);
-    $stmt = $this->pdo->prepare('INSERT INTO' . $this->table . '(' . $values . ') VALUES (:' . $valuesWithColon . ')');
+    $stmt = $this->pdo->prepare(' INSERT INTO ' . $this->table . ' ( ' . $values . ' ) VALUES ( :' . $valuesWithColon . ' ) ');
     $stmt->execute($record);
 }
 public function delete($field, $value) {
-    $stmt = $this->pdo->prepare('DELETE FROM' .  $this->table . 'WHERE' . $field . ' = :value');
+    $stmt = $this->pdo->prepare('DELETE FROM' .  $this->table . ' WHERE ' . $field . ' = :value');
 	$stmt->execute(['value' => $value]);
 }
 public function update($record) {

@@ -16,10 +16,19 @@ class Page {
         'variables' => []
       ];
       }
+      public function aboutus() {
+        return [
+        'template' => 'aboutus.html.php',
+        'title' => 'About us',
+        'variables' => []
+      ];
+      }
+      
     function home() {
       return [
         'template' => 'home.html.php',
-        'title' => 'Kate kitchen'
+        'title' => 'Kate kitchen',
+        'variables' => []
     ];
     }
 }

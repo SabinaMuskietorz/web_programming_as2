@@ -17,18 +17,21 @@ class Review {
         ];
     }
     public function editSubmit() {
-        $date = new DateTime();
+        $date = new \DateTime();
+        $review = $_POST['review'];
 
             $values = [
                 'date' => $date->format('Y-m-d H:i:s'),
-                'reviewText' => $_POST['reviewText'],
+                'reviewText' => $review['reviewText'],
                 'userId' => $_SESSION['id'],
-                'dishId' => $_GET['dishId'],
-                'rating' => $_POST['rating']
+                'dishId' => $review['dishId'],
+                //'rating' => $_POST['rating']//
                 ];   
-            $this->$reviewsTable->save($values);
+            $this->reviewsTable->save($values);
             $output = 'Review saved';
+            header('location:/dish/list');
         }
+        
         public function edit() {
             if (isset($_GET['idreview'])) {
                 $review = $this->reviewsTable->find('idreview', $_GET['idreview']);

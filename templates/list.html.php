@@ -1,5 +1,5 @@
 <ul>
-<h2><?=$dishes[0]->getCategory()->name?></h2>
+<h2><?=$title?></h2>
 <?php
 
 foreach ($dishes as $dish) { 
@@ -9,6 +9,7 @@ foreach ($dishes as $dish) {
     <h3><?= '£' . $dish->price; ?></h3>
     <h2><?= $dish->name; ?></h2>
     <p><?= nl2br($dish->description); ?></p>
+    <a href ="/dish/show?id=<?=$dish->id?>"> Display dish </a>
     </div>
     </li>
     <?php

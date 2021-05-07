@@ -31,6 +31,7 @@ class EntryPoint {
 		$output = $this->loadTemplate('../templates/' . $page['template'], $page['variables']);
 
 		$title = $page['title'];
+		$categories = $this->routes->getCategories();
 
 		require '../templates/layout.html.php';
 	}

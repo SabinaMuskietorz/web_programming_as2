@@ -21,13 +21,15 @@
 			<li><a href="/">Home</a></li>
 			<li>Menu
 				<ul>
-					<li><a href="/starters">Starters</a></li>
-					<li><a href="/mains">Mains</a></li>
-					<li><a href="/dessert">Dessert</a></li>
-
+				<?php
+					foreach ($categories as $category) { ?>
+						<li><a href="/dish/list?id=<?=$category->id?>"><?=$category->name?></a></li>
+					<?php 
+					}
+                 ?>
 				</ul>
 			</li>
-			<li><a href="/page/home">About Us</a></li>
+			<li><a href="/page/aboutus">About Us</a></li>
 			<li><a href="/page/faq">FAQ</a></li>
 			<li>
 			<?php
