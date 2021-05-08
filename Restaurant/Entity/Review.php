@@ -14,5 +14,8 @@ class Review {
 	public function getUser() {
 		return $this->usersTable->find('id', $this->iduser)[0];
 	}
+	public function getName() {
+		return $this->usersTable->find('name', $this->username)[0];
+	}
 }
 ?>

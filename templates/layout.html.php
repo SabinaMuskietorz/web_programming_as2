@@ -71,7 +71,7 @@
 
 
 	<footer>
-		&copy; Kate's Kitchen 2021
+		&copy; Kate's Kitchen <?= date("Y");?>
 	</footer>
 </body>
 
