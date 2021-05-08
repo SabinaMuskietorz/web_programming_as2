@@ -2,10 +2,13 @@
 namespace Restaurant\Entity;
 class Review {
 	public $usersTable;
+	public $name;
 	public $reviewText;
 	public $date;
 	public $idreview;
+	public $rating;
 	public $iduser;
+	public $username;
 
 	public function __construct(\PRO2021\DatabaseTable $usersTable) {
 		$this->usersTable = $usersTable;

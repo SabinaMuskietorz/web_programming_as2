@@ -6,7 +6,7 @@ class Review {
         $this->reviewsTable = $reviewsTable;
     }
     public function delete() {
-        $this->reviewsTable->delete($_POST['idreview']);
+        $review = $this->reviewsTable->delete($_POST['idreview']);
 
         header('location: /admin');
     }
@@ -20,14 +20,15 @@ class Review {
         $date = new \DateTime();
         $review = $_POST['review'];
 
-            $values = [
+            $$record = [
                 'date' => $date->format('Y-m-d H:i:s'),
+                'name' => $review['name'],
                 'reviewText' => $review['reviewText'],
                 'userId' => $_SESSION['id'],
                 'dishId' => $review['dishId'],
-                //'rating' => $_POST['rating']//
+                'rating' => $review['rating']
                 ];   
-            $this->reviewsTable->save($values);
+            $this->reviewsTable->save($$record);
             $output = 'Review saved';
             header('location:/dish/list');
         }
@@ -40,8 +41,8 @@ class Review {
                 $review = false;
             }
             return [
-                'template' => 'editreview.html.php',
-                'variables' => ['values' => $values],
+                'template' => 'showdish.html.php',
+                'variables' => ['record' => $record],
                 'title' => 'Edit review'
             ];
         }
