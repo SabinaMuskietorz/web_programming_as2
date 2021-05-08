@@ -1,8 +1,4 @@
-----------1) Can you update the copyright notice? It’s not 2017 any more!
-----------2) I want to add a new page called “FAQs”. Just add the page with some placeholder text that says “FAQs coming
------------soon” and put a link in the menu. I’ll send the content over at a later date.
------------3) I can add a new category in the administration area, but the added categories do not appear on the list in the
-------------menu. Can you fix this? I want to be able to add, for example, specials or a vegan section and have it appear.
+
 -----------4) We rotate the menu regularly need to remove items from the website and then put them back at a later date. At
 ------------the moment I have to delete the item then type out all the information again to relist it. Can you add some
 ------------functionality that lets me hide the dish from customers with the ability to easily restore it later? I do still want to be
