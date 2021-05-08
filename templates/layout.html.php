@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" href="/styles.css"/>
-		<title><?=$title?></title>
-	</head>
-	<body>
+
+<head>
+	<link rel="stylesheet" href="/styles.css" />
+	<title><?=$title?></title>
+</head>
+
+<body>
 	<header>
 		<section>
 			<aside>
@@ -21,18 +23,24 @@
 			<li><a href="/">Home</a></li>
 			<li>Menu
 				<ul>
-				<?php
-					foreach ($categories as $category) { ?>
-						<li><a href="/dish/list?id=<?=$category->id?>"><?=$category->name?></a></li>
+					<?php
+					foreach ($categories as $category) { 
+					if ($category->visibility == 'shown') { ?>
+
+					<li><a href="/dish/list?id=<?=$category->id?>"><?=$category->name?></a></li>
+
 					<?php 
+
 					}
+					
+				}
                  ?>
 				</ul>
 			</li>
 			<li><a href="/page/aboutus">About Us</a></li>
 			<li><a href="/page/faq">FAQ</a></li>
 			<li>
-			<?php
+				<?php
 			/* variables to change the text from log in to log out accordingly
 			if person is logged in or logged out, and to change the file that 
 			user is accesing by clicking on that label */
@@ -55,9 +63,9 @@
 		</ul>
 
 	</nav>
-<img src="/images/randombanner.php"/>
+	<img src="/images/randombanner.php" />
 	<main class="home">
-        <?=$output?>
+		<?=$output?>
 
 	</main>
 
@@ -66,4 +74,5 @@
 		&copy; Kate's Kitchen 2021
 	</footer>
 </body>
+
 </html>

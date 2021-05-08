@@ -1,5 +1,7 @@
+
+
 <ul>
-<h2><?=$title?></h2>
+<h1><?=$title?></h2>
 <?php
 
 foreach ($dishes as $dish) { 
@@ -14,5 +16,8 @@ foreach ($dishes as $dish) {
     </li>
     <?php
     }
-} ?>
+} 
+
+
+?>
 </ul>
