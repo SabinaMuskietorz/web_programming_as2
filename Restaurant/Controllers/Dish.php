@@ -37,7 +37,7 @@ class Dish {
             'template' => 'list.html.php',
             'title' => 'Menu',
             'variables' => [
-                'dishes' => $dishes
+                'dishes' => $dishes,
                 'title' => $title
             ] 
             ];
