@@ -1,10 +1,22 @@
 <?php
 namespace Restaurant\Controllers;
 class Page {
+  private $dishesTable;
+    public function __construct($dishesTable, $categoriesTable, $reviewsTable, $usersTable) {
+        $this->dishesTable = $dishesTable;
+        $this->categoriesTable = $categoriesTable;
+        $this->reviewsTable = $reviewsTable;
+        $this->usersTable = $usersTable;
+      }
+    
+
+
+
     function admin() {
+      $dishes = $this->dishesTable->findAll();
       return [
         'template' => 'adminlist.html.php',
-        'variables' => [],
+        'variables' => ['dishes' => $dishes],
         'title' => 'Admin'
     ];
 
@@ -24,10 +36,11 @@ class Page {
       ];
       }
       public function categories() {
+        $categories = $this->categoriesTable->findAll();
         return [
           'template' => 'categories.html.php',
           'title' => 'Categories',
-          'variables' => []
+          'variables' => ['categories' => $categories]
         ];
       }
       

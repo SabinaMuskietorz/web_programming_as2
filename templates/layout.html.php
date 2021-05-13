@@ -64,7 +64,7 @@
 
 	</nav>
 	<img src="/images/randombanner.php" />
-	<main class="home">
+	<main class="sidebar">
 		<?=$output?>
 
 	</main>

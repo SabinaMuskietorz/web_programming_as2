@@ -20,7 +20,7 @@ class Routes implements \PRO2021\Routes {
 		$controllers['user'] = new \Restaurant\Controllers\User($this->usersTable);
 		$controllers['dish'] = new \Restaurant\Controllers\Dish($this->dishesTable, $this->reviewsTable);
 		$controllers['review'] = new \Restaurant\Controllers\Review($this->reviewsTable);
-		$controllers['page'] = new \Restaurant\Controllers\Page();
+		$controllers['page'] = new \Restaurant\Controllers\Page($this->dishesTable, $this->categoriesTable, $this->reviewsTable, $this->usersTable);
 		return $controllers[$name];
 	}
     

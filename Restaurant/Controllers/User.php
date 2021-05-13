@@ -74,6 +74,7 @@ class User {
                    else {
                        //if person is a normal user it prints hello to user and sets session to client
                     $_SESSION ['client'] = true;
+                    header('location: /page/home');
                    
                     }
                 }
@@ -87,7 +88,7 @@ class User {
 
                 }
                
-                header('location: /page/home');
+                //header('location: /page/home');
             }
             public function login($errors=[]) {
                 return [

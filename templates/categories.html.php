@@ -1,6 +1,14 @@
+<section class="left">
+		<ul>
+			<li><a href="/page/home">Menu</a></li>
+			<li><a href="/page/categories">Categories</a></li>
+
+		</ul>
+	</section>
+    <section class="right">
 <h2>Categories</h2>
 
-<a class="new" href="addcategory.php">Add new category</a>
+<a class="new" href="/category/edit">Add new category</a>
  <table>
 <thead>
 <tr>
@@ -9,14 +17,13 @@
 <th style="width: 5%">&nbsp;</th>
 </tr>
 <?php
-$categories = $pdo->query('SELECT * FROM category');
 
 foreach ($categories as $category) { ?>
     <tr>
-    <td><?= $category['name'] ?></td>
-    <td><a style="float: right" href="editcategory.php?id=' . $category['id'] . '">Edit</a></td>
-    <td><form method="post" action="deletecategory.php">
-    <input type="hidden" name="id" value="' . $category['id'] . '" />
+    <td><?= $category->name?></td>
+    <td><a style="float: right" href="category/edit?id=<?=$category->id?>">Edit</a></td>
+    <td><form method="post" action="category/delete">
+    <input type="hidden" name="id" value="<?=$category->id?>" />
     <input type="submit" name="submit" value="Delete" />
     </form></td>
     </tr>
