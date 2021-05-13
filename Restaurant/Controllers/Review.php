@@ -20,7 +20,7 @@ class Review {
         $date = new \DateTime();
         $review = $_POST['review'];
 
-            $$record = [
+            $record = [
                 'date' => $date->format('Y-m-d H:i:s'),
                 'name' => $review['name'],
                 'reviewText' => $review['reviewText'],
@@ -28,7 +28,7 @@ class Review {
                 'dishId' => $review['dishId'],
                 'rating' => $review['rating']
                 ];   
-            $this->reviewsTable->save($$record);
+            $this->reviewsTable->save($record);
             $output = 'Review saved';
             header('location:/dish/list');
         }

@@ -23,11 +23,18 @@ class Page {
         'variables' => []
       ];
       }
+      public function categories() {
+        return [
+          'template' => 'categories.html.php',
+          'title' => 'Categories',
+          'variables' => []
+        ];
+      }
       
     function home() {
       return [
         'template' => 'home.html.php',
-        'title' => 'Kate kitchen',
+        'title' => 'Kate\'s kitchen',
         'variables' => []
     ];
     }

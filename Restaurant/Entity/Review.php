@@ -9,6 +9,9 @@ class Review {
 	public $rating;
 	public $iduser;
 	public $username;
+	public $visibility;
+	public $dishId;
+
 
 	public function __construct(\PRO2021\DatabaseTable $usersTable) {
 		$this->usersTable = $usersTable;

@@ -68,6 +68,7 @@ class User {
                         /* if person is an admin it sets the session to admin and prints hello to admin
                         and directs them to admin page */
                         $_SESSION ['admin'] = true;
+                        header('location: /page/admin');
                        
                        }
                    else {

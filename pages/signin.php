@@ -1,10 +1,10 @@
 <?php
-// register new users
-session_start();
 require '../functions/loadTemplate.php';
 require '../dbconnection.php';
-require '../classes/DatabaseTable.php';
-
+$title = 'Register';
+$output = loadTemplate('../templates/signin.html.php', []);
+require '../templates/layout.html.php';
+?>
 
 
 $title = 'Register';

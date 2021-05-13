@@ -25,7 +25,7 @@ class Routes implements \PRO2021\Routes {
 	}
     
 	public function getDefaultRoute() {
-		return 'dish/home';
+		return 'page/home';
 	}
 	public function getCategories() {
 		return $this->categoriesTable->findAll();
@@ -57,7 +57,7 @@ class Routes implements \PRO2021\Routes {
 
 		$requiresPermission = $loginRoutes[$route] ?? false;
 		if ($requiresPermission && !isset($_SESSION['admin'])) {
-			header('location: /user/login');
+			header('location: /page/home');
 			exit();
 		}
 
