@@ -1,12 +1,16 @@
-<form action="/category/edit" method="POST">
+<form action="" method="POST">
 
-    <input type="hidden" name="id" value="<?= $templateVars->id ?? ''?>"/>
+    <input type="hidden" name="category[id]" value="<?=$category->id ?? ''?>"/>
     <label>Name</label>
-    <input type="text" name="name" value="<?= $templateVars->name ?? ''?>"/>
+    <input type="text" name="category[name]" value="<?=$category->name ?? ''?>"/>
     <label>Visibility</label>
-    <input type="text" name="visibility" value="<?= $templateVars->visibility ?? ''?>"/>
+    <input type="text" name="category[visibility]" value="<?=$category->visibility ?? ''?>"/>
 
 
     <input type="submit" name="submit" value="Save Category" />
 
 </form>
+
+
+
+

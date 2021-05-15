@@ -1,13 +1,13 @@
-<form action="/dish/edit" method="post">
+<form action="" method="POST">
 
-    <input type="hidden" name="dish[id]" value="<?= $record->id ?? ''?>"/>
-    <label for="name">Name:</label>
-    <input id="name" name="dish[name]"> <?= $record->name ?? ''?> 
-    <label for="description">Type description here:</label>
-    <textarea id="description" name="dish[description]" rows="3" cols="40"> <?= $record->description ?? ''?> </textarea>
-    <label for="price">Price:</label>
-    <input id="price" name="dish[price]"> <?= $record->price ?? ''?> 
-    <label for="visibility">Visibility:</label>
-    <input id="visibility" name="dish[visibility]"> <?= $record->visibility ?? ''?> 
-    <input type="submit" name="submit" value="Save" />
+    <input type="hidden" name="dish[id]" value="<?=$dish->id ?? ''?>"/>
+    <label>Name:</label>
+    <input type="text" name="dish[name]" value="<?=$dish->name ?? ''?>"/>
+    <label>Type description here:</label>
+    <textarea name="dish[description]" rows="3" cols="40" ><?=$dish->description ?? ''?></textarea>
+    <label>Price:</label>
+    <input type="text" name="dish[price]" value="<?=$dish->price ?? ''?>"/>
+    <label>Visibility:</label>
+    <input type="text" name="dish[visibility]" value="<?=$dish->visibility ?? ''?>"/>
+    <input type="submit" name="submit" value="Save Dish" />
 </form>

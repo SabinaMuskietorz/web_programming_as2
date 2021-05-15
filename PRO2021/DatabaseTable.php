@@ -34,28 +34,36 @@ public function insert($record) {
     $stmt = $this->pdo->prepare(' INSERT INTO ' . $this->table . ' ( ' . $values . ' ) VALUES ( :' . $valuesWithColon . ' ) ');
     $stmt->execute($record);
 }
-public function delete($field, $value) {
-    $stmt = $this->pdo->prepare('DELETE FROM' .  $this->table . ' WHERE ' . $field . ' = :value');
-	$stmt->execute(['value' => $value]);
+public function delete($id) {
+    $stmt = $this->pdo->prepare('DELETE FROM ' . $this->table . ' WHERE ' . $this->primaryKey . ' = :id');
+    $criteria = [
+        'id' => $id
+    ];
+    $stmt->execute($criteria);
 }
 public function update($record) {
 
-    $query = 'UPDATE' . $this->table . 'SET ';
+    $query = 'UPDATE ' . $this->table . ' SET ';
+
     $parameters = [];
-    foreach($record as $key => $value) {
-        $parameters[] = $key . ' = :' . $key;
+    foreach ($record as $key => $value) {
+           $parameters[] = $key . ' = :' .$key;
     }
+
     $query .= implode(', ', $parameters);
-    $query .= 'WHERE' . $this->primaryKey . ' = :primaryKey';
+    $query .= ' WHERE ' . $this->primaryKey . ' = :primaryKey';
+
     $record['primaryKey'] = $record[$this->primaryKey];
+
     $stmt = $this->pdo->prepare($query);
+
     $stmt->execute($record);
 }
 public function save($record) {
     try {
         $this->insert($record);
     }
-    catch (Exception $e) {
+    catch ( \ Exception $e) {
         $this->update($record);
     }
 }

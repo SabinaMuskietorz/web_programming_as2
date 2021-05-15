@@ -16,10 +16,10 @@ class Category {
             ];
     }
     public function delete() {
-        $this->categoriesTable->delete($_POST['id']);
+		$categories = $this->categoriesTable->delete($_POST['id']);
 
-        header('location: /category/list');
-    }
+		header('location: /category/list');
+	}
     public function home(){
         return [
             'template' => 'home.html.php',
@@ -27,28 +27,22 @@ class Category {
         ];
     }
     public function editSubmit() {
- 
-            $templateVars = [
-                'name' => $_POST['name'],
-                'id' => $_POST['id'],
-                'visibility' => $_POST['visibility']
-            ];
-    
-            $this->categoriesTable->save($templateVars);
-            header('location: /category/list');
-        }
+        $data = $_POST['category'];
+        $this->categoriesTable->save($data);
+        header('location: /page/categories');
+  }
         public function edit() {
             if (isset($_GET['id'])) {
-                $result = $this->ScategoriesTable->find('id', $_GET['id']);
-                $templateVars = $result[0];
+                $result = $this->categoriesTable->find('id', $_GET['id'])[0];
+                //$templateVars = $result[0];
             }
-            else {
-                $templateVars = false;
-            }
+        
             return [
                 'template' => 'editcategory.html.php',
-                'variables' => ['templateVars' => $templateVars],
+                'variables' => [
+                    'category' => $result  ?? null
+                ],
                 'title' => 'Edit category'
             ];
         }
-    }
+}

@@ -59,27 +59,19 @@ class Dish {
 
     public function editSubmit() {
         
-        $record = [
-            'name' => $_POST['name'],
-            'description' => $_POST['description'],
-            'price' => $_POST['price'],
-            'categoryId' => $_POST['categoryId'],
-            'visibility' => $_POST['visibility'],
-            'id' => $_GET['id']
-        ];
-        $this->$dishesTable->save($record);
-        $output = 'Dish saved';
+        $data = $_POST['dish'];
+        $this->dishesTable->save($data);
+        header('location: /page/admin');
         }
         public function edit() {
         if (isset($_GET['id'])) {
-            $dish = $this->dishesTable->find('id', $_GET['id']);
-        }
-        else {
-            $dish = false;
+            $result = $this->dishesTable->find('id', $_GET['id'])[0];
         }
         return [
             'template' => 'editdish.html.php',
-            'variables' => ['record' => $record],
+            'variables' => [
+                'dish' => $result  ?? null
+            ],
             'title' => 'Edit dish'
         ];
     }
