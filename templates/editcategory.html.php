@@ -3,6 +3,7 @@
     <input type="hidden" name="id" value="<?= $templateVars->id ?? ''?>"/>
     <label>Name</label>
     <input type="text" name="name" value="<?= $templateVars->name ?? ''?>"/>
+    <label>Visibility</label>
     <input type="text" name="visibility" value="<?= $templateVars->visibility ?? ''?>"/>
 
 

@@ -8,7 +8,7 @@ class Category {
     public function list() {
         $categories = $this->categoriesTable->findAll();
         return [
-            'template' => 'categorylist.html.php',
+            'template' => 'categories.html.php',
             'title' => 'Category list',
             'variables' => [
                 'categories' => $categories
@@ -30,7 +30,8 @@ class Category {
  
             $templateVars = [
                 'name' => $_POST['name'],
-                'id' => $_POST['id']
+                'id' => $_POST['id'],
+                'visibility' => $_POST['visibility']
             ];
     
             $this->categoriesTable->save($templateVars);
