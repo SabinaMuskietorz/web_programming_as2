@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form action="/dish/edit" method="post">
 
     <input type="hidden" name="dish[id]" value="<?= $record->id ?? ''?>"/>
     <label for="name">Name:</label>
