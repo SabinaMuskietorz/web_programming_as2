@@ -1,6 +1,6 @@
 <section class="left">
 		<ul>
-			<li><a href="/page/home">Menu</a></li>
+			<li><a href="/page/admin">Menu</a></li>
 			<li><a href="/page/categories">Categories</a></li>
 
 		</ul>

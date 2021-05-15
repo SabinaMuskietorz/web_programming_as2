@@ -35,7 +35,7 @@ public function insert($record) {
     $stmt->execute($record);
 }
 public function delete($id) {
-    $stmt = $this->pdo->prepare('DELETE FROM ' . $this->table . ' WHERE ' . $this->primaryKey . ' = :id');
+    $stmt = $this->pdo->prepare(' DELETE FROM  '  .$this->table.  '   WHERE   '   .$this->primaryKey.   '    = :id   ');
     $criteria = [
         'id' => $id
     ];

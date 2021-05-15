@@ -25,8 +25,8 @@ foreach ($dishes as $dish) {
     <td><?=$dish->price?></td>
     <td><a style="float: right" href="/dish/edit?id=<?=$dish->id?>">Edit</a></td>
     <td>
-        <form method="post" action="/dish/delete">
-            <input type="hidden" name="id" value="<?=$dish->id?>" />
+    <form action="/dish/delete" method="POST">
+            <input type="hidden" name="dish[id]" value="<?=$dish->id ?? ''?>" />
             <input type="submit" name="submit" value="Delete" />
         </form>
     </td>

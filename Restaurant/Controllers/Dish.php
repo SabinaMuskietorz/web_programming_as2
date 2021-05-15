@@ -58,12 +58,11 @@ class Dish {
 
 
     public function editSubmit() {
-        
         $data = $_POST['dish'];
         $this->dishesTable->save($data);
         header('location: /page/admin');
-        }
-        public function edit() {
+    }
+    public function edit() {
         if (isset($_GET['id'])) {
             $result = $this->dishesTable->find('id', $_GET['id'])[0];
         }
