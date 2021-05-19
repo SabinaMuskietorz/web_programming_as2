@@ -2,10 +2,11 @@
 namespace Restaurant\Entity;
 class Review {
 	public $usersTable;
+	public $dishesTable;
 	public $name;
 	public $reviewText;
 	public $date;
-	public $idreview;
+	public $id;
 	public $rating;
 	public $iduser;
 	public $username;

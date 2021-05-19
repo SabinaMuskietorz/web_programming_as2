@@ -12,14 +12,14 @@ class Routes implements \PRO2021\Routes {
 		$this->usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'iduser',  '\Restaurant\Entity\User', $entityConstructor = []);
 		$this->categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id', '\Restaurant\Entity\Category', $entityConstructor = []);
 		$this->dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', '\Restaurant\Entity\Dish', [$this->categoriesTable]);
-		$this->reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'idreview', '\Restaurant\Entity\Review', [$this->usersTable]);
+		$this->reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'id', '\Restaurant\Entity\Review', [ $this->dishesTable]);
         
      
 		$controllers = [];
 		$controllers['category'] = new \Restaurant\Controllers\Category($this->categoriesTable);
 		$controllers['user'] = new \Restaurant\Controllers\User($this->usersTable);
-		$controllers['dish'] = new \Restaurant\Controllers\Dish($this->dishesTable, $this->reviewsTable);
-		$controllers['review'] = new \Restaurant\Controllers\Review($this->reviewsTable);
+		$controllers['dish'] = new \Restaurant\Controllers\Dish($this->dishesTable, $this->reviewsTable, $this->categoriesTable);
+		$controllers['review'] = new \Restaurant\Controllers\Review($this->reviewsTable,  $this->dishesTable);
 		$controllers['page'] = new \Restaurant\Controllers\Page($this->dishesTable, $this->categoriesTable, $this->reviewsTable, $this->usersTable);
 		return $controllers[$name];
 	}

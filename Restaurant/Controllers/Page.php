@@ -21,12 +21,21 @@ class Page {
     ];
 
     }
+
     public function faq() {
         return [
         'template' => 'faq.html.php',
         'title' => 'FAQ',
         'variables' => []
       ];
+      }
+      public function controlreviews() {
+        $reviews = $this->reviewsTable->findAll();
+        return [
+          'template' => 'reviewlist.html.php',
+          'title' => 'Reviews',
+          'variables' => ['reviews' => $reviews]
+        ];
       }
       public function aboutus() {
         return [

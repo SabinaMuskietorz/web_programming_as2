@@ -2,14 +2,38 @@
 namespace Restaurant\Controllers;
 class Review {
     private $reviewsTable;
-    public function __construct($reviewsTable) {
+    public function __construct($reviewsTable, $dishesTable) {
         $this->reviewsTable = $reviewsTable;
-    }
-    public function delete() {
-        $review = $this->reviewsTable->delete($_POST['idreview']);
+        $this->dishesTable = $dishesTable;
+        
 
-        header('location: /admin');
     }
+    public function deleteSubmit() {
+        $reviews = $this->reviewsTable->delete($_POST['id']);
+
+        header('location: /page/controlreviews');
+    }
+    public function list() {
+        if(isset ($_GET['id'])) {
+        $reviews = $this->reviewsTable->find( 'dishId', $_GET['id']);
+        $title = $reviews[0]->getDish()->name;
+        
+        }
+
+        else { 
+            $reviews = $this->reviewsTable->findAll();
+            $title = 'Reviews';
+        }
+        return [
+            'template' => 'reviewlist.html.php',
+            'title' => 'Reviews',
+            'variables' => [
+                'reviews' => $reviews,
+                'title' => $title
+            ] 
+            ];
+        
+        }
     public function home(){
         return [
             'template' => 'home.html.php',
@@ -18,31 +42,18 @@ class Review {
     }
     public function editSubmit() {
         $date = new \DateTime();
-        $review = $_POST['review'];
-
-            $record = [
-                'date' => $date->format('Y-m-d H:i:s'),
-                'name' => $review['name'],
-                'reviewText' => $review['reviewText'],
-                'userId' => $_SESSION['id'],
-                'dishId' => $review['dishId'],
-                'rating' => $review['rating']
-                ];   
-            $this->reviewsTable->save($record);
-            $output = 'Review saved';
-            header('location:/dish/list');
+        $data = $_POST['review'];
+        $this->reviewsTable->save($data);
+            header('location:/review/list');
         }
         
         public function edit() {
-            if (isset($_GET['idreview'])) {
-                $review = $this->reviewsTable->find('idreview', $_GET['idreview']);
-            }
-            else {
-                $review = false;
+            if (isset($_GET['id'])) {
+                $result = $this->reviewsTable->find('id', $_GET['id'])[0];
             }
             return [
-                'template' => 'showdish.html.php',
-                'variables' => ['record' => $record],
+                'template' => 'editreview.html.php',
+                'variables' => ['review' => $result  ?? null],
                 'title' => 'Edit review'
             ];
         }

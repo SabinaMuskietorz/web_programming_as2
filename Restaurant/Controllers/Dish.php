@@ -3,15 +3,17 @@ namespace Restaurant\Controllers;
 class Dish {
     private $dishesTable;
     private $reviewsTable;
-    public function __construct($dishesTable, $reviewsTable) {
+    public function __construct($dishesTable, $reviewsTable, $categoriesTable) {
         $this->dishesTable = $dishesTable;
         $this->reviewsTable = $reviewsTable;
+        $this->categoriesTable = $categoriesTable;
+
 
     }
-    public function delete() {
-        $this->dishesTable->delete($_POST['id']);
+    public function deleteSubmit() {
+        $dishes = $this->dishesTable->delete($_POST['id']);
 
-        header('location: /admin');
+        header('location: /dish/list');
     }
     public function home(){
         return [
@@ -47,7 +49,7 @@ class Dish {
         $dish = $this->dishesTable->find( 'id', $_GET['id']);
         $reviews = $this->reviewsTable->find( 'dishId', $_GET['id']);
         return [
-            'template' => 'showdish.html.php',
+            'template' => 'showreviews.html.php',
             'title' => 'Display',
             'variables' => [
                 'dish' => $dish[0],

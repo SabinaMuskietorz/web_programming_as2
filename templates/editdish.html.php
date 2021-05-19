@@ -2,12 +2,14 @@
 
     <input type="hidden" name="dish[id]" value="<?=$dish->id ?? ''?>"/>
     <label>Select category:</label>
-	<select name="idcategory">Select category
+	<select name="categoryId">Select category
+    <ul>
 		<?php  
+        
         // loop through categories 
 		foreach ($categories as $category) { ?>
         
-			<li><a href="/dish/edit?id=<?=$category->id?>"><?=$category->name?></a></li>
+			<li><a href="/dish/edit?id=<?=$category->id ?? ''?>"><?=$category->name?></a></li>
             </ul>
             <?php
 		}

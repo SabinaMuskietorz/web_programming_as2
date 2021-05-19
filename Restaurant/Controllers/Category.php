@@ -15,10 +15,10 @@ class Category {
             ]
             ];
     }
-    public function delete() {
-		$categories = $this->categoriesTable->delete($_POST['id']);
+    public function deleteSubmit() {
+        $categories = $this->categoriesTable->delete($_POST['id']);
 
-		header('location: /category/list');
+        header('location: /category/list');
 	}
     public function home(){
         return [

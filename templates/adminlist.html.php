@@ -1,7 +1,8 @@
 <section class="left">
 		<ul>
-			<li><a href="/page/admin">Menu</a></li>
-			<li><a href="/page/categories">Categories</a></li>
+        <li><a href="/page/admin">Menu</a></li>
+        <li><a href="/page/categories">Categories</a></li>
+        <li><a href="/page/controlreviews">Reviews</a></li>
 
 		</ul>
 	</section>
@@ -26,9 +27,9 @@ foreach ($dishes as $dish) {
     <td><a style="float: right" href="/dish/edit?id=<?=$dish->id?>">Edit</a></td>
     <td>
     <form action="/dish/delete" method="POST">
-            <input type="hidden" name="dish[id]" value="<?=$dish->id ?? ''?>" />
-            <input type="submit" name="submit" value="Delete" />
-        </form>
+    <input type="hidden" name="id" value="<?=$dish->id?>"/>
+		<input type="submit" value="Delete" />
+	</form>
     </td>
 </tr>
 <?php

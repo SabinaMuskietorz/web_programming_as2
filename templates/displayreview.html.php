@@ -4,9 +4,9 @@ foreach ($reviewQuery as $review) { ?>
 <p>
 <?=$review->reviewText?>
 <em>Posted by: <?= $review->getUser()->username ?></em>
- <a href="/review/edit?idreview=<?=$review->idreview?>">edit</a>
+ <a href="/review/edit?id=<?=$review->id?>">edit</a>
  <form action="/review/delete" method="POST">
- <input type="hidden" name="idreview" value="<?=$review->idreview?>" />
+ <input type="hidden" name="id" value="<?=$review->id?>" />
  <input type="submit" value="Delete" />
  </form>
 </p>
