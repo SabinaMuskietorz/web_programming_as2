@@ -41,9 +41,18 @@ class Review {
         ];
     }
     public function editSubmit() {
-        $date = new \DateTime();
-        $data = $_POST['review'];
-        $this->reviewsTable->save($data);
+        
+            $templateVars = $_POST['review'];
+                $templateVars = [
+                    'id' => $_POST['review']['id'],
+                    'name' => $_POST['review']['name'],
+                    'reviewText' => $_POST['review']['reviewText'],
+                    'dishId' => $_POST['review']['dishId'],
+                    'rating' => $_POST['review']['rating'],
+                    'visibility' => $_POST['review']['visibility']
+                ];
+
+        $this->reviewsTable->save($templateVars);
             header('location:/review/list');
         }
         

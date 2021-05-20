@@ -39,6 +39,7 @@
 			</li>
 			<li><a href="/page/aboutus">About Us</a></li>
 			<li><a href="/page/faq">FAQ</a></li>
+			<li><a href="/user/edit">Sign in</a></li>
 			<li>
 				<?php
 			/* variables to change the text from log in to log out accordingly

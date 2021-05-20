@@ -1,9 +1,20 @@
-<form action="/signin" method="post">
-			<label>Username</label>
-			<input type="text"  name="username" />
-			<label>Password</label>
-			<input type="password"  name="password" />
-			<!--<label>I agree to terms and conditions</label>
-			<input type ="checkbox" name="checkbox" value="ticked" />-->
-			<input type="submit" value="Register" name="submit" />
-		</form>
+<form action="" method="POST">
+	<input type="hidden" name="user[id]" value="<?=$user->id ?? ''?>" />
+	<label>Username</label>
+	<input type="text" name="user[username]" value="<?=$user->username ?? ''?>" />
+	<?php
+	if(isset($_SESSION ['admin'])) {
+		?>
+	<label>Role</label>
+	<input type="text" name="user[role]" value="<?=$user->role ?? ''?>" />
+	<?php
+	}
+	if($_SESSION ['id'] == $user->id) {
+		?>
+	<label>Password</label>
+	<input type="password" name="user[password]" value="" />
+	<?php
+	}
+	?>
+	<input type="submit" name="submit"  value="Save" />
+</form>

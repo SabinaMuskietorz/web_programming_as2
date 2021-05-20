@@ -52,6 +52,16 @@ class Page {
           'variables' => ['categories' => $categories]
         ];
       }
+      function manageusers() {
+        $users = $this->usersTable->findAll();
+        return [
+          'template' => 'userlist.html.php',
+          'title' => 'User',
+          'variables' => ['users' => $users]
+        ];
+      }
+      
+
       
     function home() {
       return [

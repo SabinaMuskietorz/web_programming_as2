@@ -9,7 +9,7 @@ class Routes implements \PRO2021\Routes {
 	private $reviewsTable;
 	public function getController($name) {
 		require '../dbconnection.php';
-		$this->usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'iduser',  '\Restaurant\Entity\User', $entityConstructor = []);
+		$this->usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'id',  '\Restaurant\Entity\User', $entityConstructor = []);
 		$this->categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id', '\Restaurant\Entity\Category', $entityConstructor = []);
 		$this->dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', '\Restaurant\Entity\Dish', [$this->categoriesTable]);
 		$this->reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'id', '\Restaurant\Entity\Review', [ $this->dishesTable]);
@@ -36,7 +36,7 @@ class Routes implements \PRO2021\Routes {
 		session_start();
 		$loginRoutes = [];
 
-		$loginRoutes['/review/editSubmit'] =  true;
+		//$loginRoutes['/review/editSubmit'] =  true;
 		$requiresLogin = $loginRoutes[$route] ?? false;
 		if ($requiresLogin && !isset($_SESSION['loggedin'])) {
 			header('location: /user/login');
@@ -50,7 +50,7 @@ class Routes implements \PRO2021\Routes {
 		$loginRoutes['dish/delete'] = true;
 		$loginRoutes['review/edit'] =  true;
 		$loginRoutes['review/delete'] = true;
-		$loginRoutes['user/edit'] =  true;
+		//$loginRoutes['user/edit'] =  true;
 		$loginRoutes['user/delete'] = true;
 		$loginRoutes['categor/edit'] =  true;
 		$loginRoutes['category/delete'] = true;

@@ -5,10 +5,20 @@ class User {
     public function __construct($usersTable) {
         $this->usersTable = $usersTable;
     }
-    public function delete() {
-        $this->usersTable->delete($_POST['iduser']);
+    public function deleteSubmit() {
+        $users = $this->usersTable->delete($_POST['id']);
 
-        header('location: /admin');
+        header('location: /user/list');
+    }
+    public function list() {
+        $users = $this->usersTable->findAll();
+        return [
+            'template' => 'userlist.html.php',
+            'title' => 'User list',
+            'variables' => [
+                'users' => $users
+            ]
+            ];
     }
     public function home(){
         return [
@@ -17,29 +27,28 @@ class User {
         ];
     }
     public function editSubmit() {
- 
+        $templateVars = $_POST['user'];
             $templateVars = [
-                'iduser' => $_POST['id'],
-                'username' => $_POST['username'],
-                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-                'role' => $_POST['role']
+                'id' => $_POST['user']['id'],
+                'username' => $_POST['user']['username'],
+                'password' => password_hash($_POST['user']['password'], PASSWORD_DEFAULT),
+                'role' => $_POST['user']['role'],
+
 
             ];
-    
+            
             $this->usersTable->save($templateVars);
-            $output = 'User saved';
+            header('location: /user/list');
         }
         public function edit() {
-            if (isset($_GET['iduser'])) {
-                $result = $this->usersTable->find('iduser', $_GET['iduser']);
-                $templateVars = $result[0];
-            }
-            else {
-                $templateVars = false;
+            if (isset($_GET['id'])) {
+                $result = $this->usersTable->find('id', $_GET['id'])[0];
             }
             return [
                 'template' => 'signin.html.php',
-                'variables' => ['templateVars' => $templateVars],
+                'variables' => [
+                    'user' => $result  ?? null
+                ],
                 'title' => 'Edit user'
             ];
         }
@@ -56,7 +65,7 @@ class User {
                 if (password_verify($_POST['password'], $user->password)) {
                     //if yes, person is logged in, and we can set the sessions, and they can store variables for future use
                     $_SESSION ['loggedin'] = true;
-                    $_SESSION ['id'] = $user->iduser;
+                    $_SESSION ['id'] = $user->id;
                     $_SESSION ['name'] = $user->username;
                     $_SESSION ['role'] = $user->role;
             

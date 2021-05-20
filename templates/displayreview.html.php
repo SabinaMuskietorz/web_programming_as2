@@ -3,7 +3,7 @@ foreach ($reviewQuery as $review) { ?>
 <blockquote>
 <p>
 <?=$review->reviewText?>
-<em>Posted by: <?= $review->getUser()->username ?></em>
+<em>Posted by: <?=$review->name ?></em>
  <a href="/review/edit?id=<?=$review->id?>">edit</a>
  <form action="/review/delete" method="POST">
  <input type="hidden" name="id" value="<?=$review->id?>" />
@@ -11,4 +11,7 @@ foreach ($reviewQuery as $review) { ?>
  </form>
 </p>
 </blockquote>
-<?php } ?>
+<?php } 
+
+/*<?=$review->getUser()->username ?>*/
+?>
