@@ -27,19 +27,19 @@ class User {
         ];
     }
     public function editSubmit() {
-        $templateVars = $_POST['user'];
-            $templateVars = [
-                'id' => $_POST['user']['id'],
-                'username' => $_POST['user']['username'],
-                'password' => password_hash($_POST['user']['password'], PASSWORD_DEFAULT),
-                'role' => $_POST['user']['role'],
-
-
-            ];
-            
-            $this->usersTable->save($templateVars);
-            header('location: /user/list');
+        $data = $_POST['user'];
+        if(isset($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         }
+    
+        $this->usersTable->save($data);
+        //var_dump($_SESSION);
+        if(isset($_SESSION['admin'])) {
+            header('location: /page/admin');
+            exit();
+        }
+        header('location: /page/home');
+    }
         public function edit() {
             if (isset($_GET['id'])) {
                 $result = $this->usersTable->find('id', $_GET['id'])[0];

@@ -9,8 +9,8 @@
 	<input type="text" name="user[role]" value="<?=$user->role ?? ''?>" />
 	<?php
 	}
-	if($_SESSION ['id'] == $user->id) {
-		?>
+		if(!isset($_SESSION ['admin']))  {
+			?>
 	<label>Password</label>
 	<input type="password" name="user[password]" value="" />
 	<?php
