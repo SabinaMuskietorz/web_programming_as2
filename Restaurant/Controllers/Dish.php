@@ -13,7 +13,7 @@ class Dish {
     public function deleteSubmit() {
         $dishes = $this->dishesTable->delete($_POST['id']);
 
-        header('location: /dish/list');
+        header('location: /page/admin');
     }
     public function home(){
         return [

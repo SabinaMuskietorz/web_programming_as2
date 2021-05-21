@@ -32,7 +32,7 @@ class Page {
       public function controlreviews() {
         $reviews = $this->reviewsTable->findAll();
         return [
-          'template' => 'reviewlist.html.php',
+          'template' => 'showreviews.html.php',
           'title' => 'Reviews',
           'variables' => ['reviews' => $reviews]
         ];

@@ -35,7 +35,7 @@ class User {
         $this->usersTable->save($data);
         //var_dump($_SESSION);
         if(isset($_SESSION['admin'])) {
-            header('location: /page/admin');
+            header('location: /user/list');
             exit();
         }
         header('location: /page/home');

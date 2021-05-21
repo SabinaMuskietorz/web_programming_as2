@@ -11,8 +11,14 @@ class Review {
     public function deleteSubmit() {
         $reviews = $this->reviewsTable->delete($_POST['id']);
 
-        header('location: /page/controlreviews');
+        header('location: /review/list');
     }
+    public function approveSubmit() {
+        $data['id'] = $_POST['id'];
+        $data['visibility'] = 'shown';
+        $this->reviewsTable->save($data);
+        header('location: /review/list');
+      }
     public function list() {
         if(isset ($_GET['id'])) {
         $reviews = $this->reviewsTable->find( 'dishId', $_GET['id']);
@@ -41,19 +47,9 @@ class Review {
         ];
     }
     public function editSubmit() {
-        
-            $templateVars = $_POST['review'];
-                $templateVars = [
-                    'id' => $_POST['review']['id'],
-                    'name' => $_POST['review']['name'],
-                    'reviewText' => $_POST['review']['reviewText'],
-                    'dishId' => $_POST['review']['dishId'],
-                    'rating' => $_POST['review']['rating'],
-                    'visibility' => $_POST['review']['visibility']
-                ];
-
-        $this->reviewsTable->save($templateVars);
-            header('location:/review/list');
+        $data = $_POST['review'];
+        $this->reviewsTable->save($data);
+            header('location:/dish/list');
         }
         
         public function edit() {
@@ -61,7 +57,7 @@ class Review {
                 $result = $this->reviewsTable->find('id', $_GET['id'])[0];
             }
             return [
-                'template' => 'editreview.html.php',
+                'template' => 'showreviews.html.php',
                 'variables' => ['review' => $result  ?? null],
                 'title' => 'Edit review'
             ];

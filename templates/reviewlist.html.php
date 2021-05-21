@@ -18,7 +18,12 @@ foreach ($reviews as $review) {
             <tr>
                 <td><?=$review->reviewText?></td>
 
-                <td><a style="float: right" href="/review/edit?id=<?=$review->id?>">Edit</a></td>
+                <td>
+                        <form action="/review/approve" method="POST">
+                        <input type="hidden" name="id" value="<?=$review->id?>" />
+                        <input type="submit" value="Approve" />
+                    </form>
+</td>
                 <td>
                     <form action="/review/delete" method="POST">
                         <input type="hidden" name="id" value="<?=$review->id?>" />

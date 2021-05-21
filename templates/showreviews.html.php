@@ -1,50 +1,32 @@
 <section class="right">
-<h2><?= $dish->name; ?></h2>
-
-<?php
-foreach ($reviews as $review) { 
-    ?>
-<ul>
-    <li>
-        <?=$review->reviewText?>
-        <em>Posted by:  <?=$review->name?></em>
-        <a href="/review/edit?id=<?=$review->id?>">edit</a>
-        
-        
-    </li>
-</ul>
-
-<?php } ?>
-<!--<form action="/review/edit" method="POST">
-    <label>Name</label>
-    <input type="text" name="review[name]" value="" />
-    <input type="hidden" name="review[dishId]" value="" />
-    <label>Review</label>
-    <textarea name="review[reviewText]" placeholder="Type your review here"> </textarea>
-    <label>Rating 1-5</label>
-    <input type="text" name="review[rating]" value="" />
-    <input type="submit" value="Add" />
-</form>-->
-
-<form action="" method="POST">
-    <input type="hidden" name="review[id]" value="" />
-    <input type="hidden" name="review[dishId]" value="" />
-    <label>Name</label>
-    <input type="text" name="review[name]" value="" />
-    <label>Review</label>
-    <textarea name="review[reviewText]"></textarea>
-    <label>Rating 1-5</label>
-    <input type="text" name="review[rating]" value="" />
+    <h2><?=$dish->name?></h2>
     <?php
-    if(isset($_SESSION ['admin'])) {
+    foreach ($reviews as $review) { 
+        if($review->visibility == 'shown') {
         ?>
-    <label>Visibility:</label>
-    <input type="text" name="review[visibility]" value="" />
-    <?php
-    }
-    ?>
-    <input type="submit" value="Save" />
-</form>
-
-
-
+    <ul>
+        <li>
+            <?=$review->reviewText?>
+            <em>Posted by: <?=$review->name?></em>
+        </li>
+    </ul>
+    <?php }} ?>
+    <form action="/review/edit" method="POST">
+        <?php if(isset($review)) { ?>
+        <input type="hidden" name="review[id]" value="" />
+        <?php } ?>
+        <input type="hidden" name="review[dishId]" value="<?=$dish->id ?? ''?>" />
+        <label>Name</label>
+        <input type="text" name="review[name]" value="" />
+        <label>Review</label>
+        <textarea name="review[reviewText]"></textarea>
+        <label>Rating 1-5</label>
+        <select name="review[rating]">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <input type="submit" value="Save" />
+    </form>
