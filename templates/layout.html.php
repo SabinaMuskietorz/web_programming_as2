@@ -39,9 +39,18 @@
 			</li>
 			<li><a href="/page/aboutus">About Us</a></li>
 			<li><a href="/page/faq">FAQ</a></li>
+			<?php
+			if(isset($_SESSION['loggedin'])) {
+				if(isset($_SESSION ['admin'])) { ?>
+					<li><a href="/page/admin">Admin</a></li> 
+					<?php
+				}}
+				else {
+					 ?>
 			<li><a href="/user/edit">Sign in</a></li>
-			<li>
-				<?php
+			<?php
+			}
+			
 			/* variables to change the text from log in to log out accordingly
 			if person is logged in or logged out, and to change the file that 
 			user is accesing by clicking on that label */

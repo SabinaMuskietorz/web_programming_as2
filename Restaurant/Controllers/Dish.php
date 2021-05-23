@@ -3,12 +3,12 @@ namespace Restaurant\Controllers;
 class Dish {
     private $dishesTable;
     private $reviewsTable;
+    private $categoriesTable;
+
     public function __construct($dishesTable, $reviewsTable, $categoriesTable) {
         $this->dishesTable = $dishesTable;
         $this->reviewsTable = $reviewsTable;
         $this->categoriesTable = $categoriesTable;
-
-
     }
     public function deleteSubmit() {
         $dishes = $this->dishesTable->delete($_POST['id']);
@@ -65,12 +65,14 @@ class Dish {
         header('location: /page/admin');
     }
     public function edit() {
+        $categories = $this->categoriesTable->findAll();
         if (isset($_GET['id'])) {
             $result = $this->dishesTable->find('id', $_GET['id'])[0];
         }
         return [
             'template' => 'editdish.html.php',
             'variables' => [
+                'categories' => $categories,
                 'dish' => $result  ?? null
             ],
             'title' => 'Edit dish'
