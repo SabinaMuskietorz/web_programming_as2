@@ -12,7 +12,6 @@ class Dish {
     }
     public function deleteSubmit() {
         $dishes = $this->dishesTable->delete($_POST['id']);
-
         header('location: /page/admin');
     }
     public function home(){
@@ -20,18 +19,14 @@ class Dish {
             'template' => 'home.html.php',
             'title' => 'Kate kitchen',
             'variables' => []
-        
         ];
-
     }
     public function list() {
         if(isset ($_GET['id'])) {
         $dishes = $this->dishesTable->find( 'categoryId', $_GET['id']);
         $title= $dishes[0]->getCategory()->name;
-        
-        }
-
-        else { 
+    }
+    else { 
             $dishes = $this->dishesTable->findAll();
             $title = 'Dishes';
         }
@@ -43,11 +38,15 @@ class Dish {
                 'title' => $title
             ] 
             ];
-        
         }
     public function show() {
         $dish = $this->dishesTable->find( 'id', $_GET['id']);
-        $reviews = $this->reviewsTable->find( 'dishId', $_GET['id']);
+        if (isset($_GET['show'])) {
+            $reviews = $this->reviewsTable->find( 'dishId', $_GET['id']);
+        }
+        else {
+        $reviews = $this->reviewsTable->findSome( 'dishId', $_GET['id'], 'rating');
+        }
         return [
             'template' => 'showreviews.html.php',
             'title' => 'Display',
@@ -57,7 +56,6 @@ class Dish {
             ] 
             ];
     }
-
 
     public function editSubmit() {
         $data = $_POST['dish'];

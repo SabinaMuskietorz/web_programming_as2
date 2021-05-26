@@ -8,19 +8,15 @@ class Page {
         $this->reviewsTable = $reviewsTable;
         $this->usersTable = $usersTable;
       }
-    
-
-
-
-    function admin() {
+      
+      function admin() {
       $dishes = $this->dishesTable->findAll();
       return [
         'template' => 'adminlist.html.php',
         'variables' => ['dishes' => $dishes],
         'title' => 'Admin'
     ];
-
-    }
+  }
 
     public function faq() {
         return [
@@ -28,14 +24,6 @@ class Page {
         'title' => 'FAQ',
         'variables' => []
       ];
-      }
-      public function controlreviews() {
-        $reviews = $this->reviewsTable->findAll();
-        return [
-          'template' => 'showreviews.html.php',
-          'title' => 'Reviews',
-          'variables' => ['reviews' => $reviews]
-        ];
       }
       public function aboutus() {
         return [
@@ -61,9 +49,7 @@ class Page {
         ];
       }
       
-
-      
-    function home() {
+      function home() {
       return [
         'template' => 'home.html.php',
         'title' => 'Kate\'s kitchen',

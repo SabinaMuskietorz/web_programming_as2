@@ -9,3 +9,4 @@ require '../templates/layout.html.php';
 //code used to finish/destroy all runnig sessions when user loggs out
 session_destroy();
 echo '<p>You are now logged out</p>';
+?>

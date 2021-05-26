@@ -26,6 +26,13 @@ public function find($field, $value) {
     $stmt->execute(['value' => $value]);
     return $stmt->fetchAll();
 }
+public function findSome($field, $value, $ordervalue) {
+    $stmt = $this->pdo->prepare('SELECT * FROM   '   .$this->table. '   WHERE   ' .$field. '    = :value   ORDER BY ' .$ordervalue. ' DESC LIMIT 3' );
+    $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
+    $stmt->execute(['value' => $value]);
+    return $stmt->fetchAll();
+}
+
 
 public function insert($record) {
     $keys = array_keys($record);

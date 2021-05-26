@@ -14,6 +14,7 @@ require 'adminnav.html.php';
             <?php
 
 foreach ($reviews as $review) { 
+    if($review->visibility !== 'shown') {
     ?>
             <tr>
                 <td><?=$review->reviewText?></td>
@@ -33,6 +34,7 @@ foreach ($reviews as $review) {
             </tr>
             <?php
     }
+}
     ?>
         </thead>
     </table>

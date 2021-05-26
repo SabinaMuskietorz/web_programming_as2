@@ -5,8 +5,6 @@ class Review {
     public function __construct($reviewsTable, $dishesTable) {
         $this->reviewsTable = $reviewsTable;
         $this->dishesTable = $dishesTable;
-        
-
     }
     public function deleteSubmit() {
         $reviews = $this->reviewsTable->delete($_POST['id']);
@@ -21,11 +19,9 @@ class Review {
       }
     public function list() {
         if(isset ($_GET['id'])) {
-        $reviews = $this->reviewsTable->find( 'dishId', $_GET['id']);
+        $reviews = $this->reviewsTable->find( 'dishId', $_GET['id'], 'rating');
         $title = $reviews[0]->getDish()->name;
-        
-        }
-
+    }
         else { 
             $reviews = $this->reviewsTable->findAll();
             $title = 'Reviews';
@@ -38,7 +34,6 @@ class Review {
                 'title' => $title
             ] 
             ];
-        
         }
     public function home(){
         return [

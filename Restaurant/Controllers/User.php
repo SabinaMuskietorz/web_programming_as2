@@ -49,14 +49,14 @@ class User {
                 'variables' => [
                     'user' => $result  ?? null
                 ],
-                'title' => 'Edit user'
+                'title' => 'Save user'
             ];
         }
         public function loginSubmit() {
             if (isset($_POST['submit'])) {
                 //find the right user in database, where the username matches the typed in username by the user
                 $passStmt= $this->usersTable->find('username', $_POST['username']);
-                var_dump($passStmt);
+                //var_dump($passStmt);
                 $user = $passStmt[0]??NULL;
                 if ($user == NULL) {
                     return $this->login();
