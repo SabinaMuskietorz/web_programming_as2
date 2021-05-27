@@ -11,13 +11,30 @@ require 'adminnav.html.php';
 <th>Name</th>
 <th style="width: 5%">&nbsp;</th>
 <th style="width: 5%">&nbsp;</th>
+<th style="width: 5%">&nbsp;</th>
+
 </tr>
 <?php
 
 foreach ($categories as $category) { ?>
     <tr>
-    <td><?= $category->name?></td>
-    <td><a style="float: right" href="/category/edit?id=<?=$category->id?>">Edit</a></td>
+    <td><?= $category->name?></td> <?php
+    if ($category->visibility == 'hidden') { ?>
+    <td>
+                        <form action="/category/appear" method="POST">
+                        <input type="hidden" name="id" value="<?=$category->id?>" />
+                        <input type="submit" value="Appear" />
+                    </form>
+</td>
+<?php } 
+if ($category->visibility == 'shown') { ?>
+<td>
+                        <form action="/category/hide" method="POST">
+                        <input type="hidden" name="id" value="<?=$category->id?>" />
+                        <input type="submit" value="Hide" />
+                    </form>
+</td> 
+<?php } ?>
     <td><form method="post" action="/category/delete">
     <input type="hidden" name="id" value="<?=$category->id?>" />
     <input type="submit" name="submit" value="Delete" />

@@ -15,6 +15,18 @@ class Category {
             ]
             ];
     }
+    public function appearSubmit() {
+        $data['id'] = $_POST['id'];
+        $data['visibility'] = 'shown';
+        $this->categoriesTable->save($data);
+        header('location: /category/list');
+      }
+      public function hideSubmit() {
+        $data['id'] = $_POST['id'];
+        $data['visibility'] = 'hidden';
+        $this->categoriesTable->save($data);
+        header('location: /category/list');
+      }
     public function deleteSubmit() {
         $categories = $this->categoriesTable->delete($_POST['id']);
 

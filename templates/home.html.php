@@ -2,10 +2,18 @@
 	menu!</a></p>
 
 <h2>Take a look at our menu:</h2>
-<ul>
-	<li><a href="/dish/list?id=<?=1?>">Starters</a></li>
-	<li><a href="/dish/list?id=<?=2?>">Mains</a></li>
-	<li><a href="/dish/list?id=<?=3?>">Dessert</a></li>
+				<ul>
+					<?php
+					foreach ($categories as $category) { 
+					if ($category->visibility == 'shown') { ?>
 
-</ul>
-</li>
+					<li><a href="/dish/list?id=<?=$category->id?>"><?=$category->name?></a></li>
+
+					<?php 
+
+					}
+					
+				}
+                 ?>
+				</ul>
+	

@@ -50,10 +50,13 @@ class Page {
       }
       
       function home() {
+        $categories = $this->categoriesTable->findAll();
       return [
         'template' => 'home.html.php',
         'title' => 'Kate\'s kitchen',
-        'variables' => []
+        'variables' => [
+          'categories' => $categories
+        ]
     ];
     }
 }
