@@ -12,6 +12,7 @@ require 'adminnav.html.php';
 <th style="width: 5%">&nbsp;</th>
 <th style="width: 5%">&nbsp;</th>
 <th style="width: 5%">&nbsp;</th>
+<th style="width: 5%">&nbsp;</th>
 
 </tr>
 <?php
@@ -35,6 +36,7 @@ if ($category->visibility == 'shown') { ?>
                     </form>
 </td> 
 <?php } ?>
+<td><a style="float: right" href="/category/edit?id=<?=$category->id?>">Edit</a></td>
     <td><form method="post" action="/category/delete">
     <input type="hidden" name="id" value="<?=$category->id?>" />
     <input type="submit" name="submit" value="Delete" />

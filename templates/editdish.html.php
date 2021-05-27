@@ -4,7 +4,9 @@
     <label>Select category:</label>
     <select name="dish[categoryId]">
     <?php
+    //loop through categories
        foreach ($categories as $category) { 
+         //if category has been approved by admin
       if ($category->visibility == 'shown') { ?>
          <option  
           <?php 

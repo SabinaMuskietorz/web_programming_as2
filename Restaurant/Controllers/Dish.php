@@ -21,10 +21,22 @@ class Dish {
             'variables' => []
         ];
     }
+    public function appearSubmit() {
+        $data['id'] = $_POST['id'];
+        $data['visibility'] = 'shown';
+        $this->dishesTable->save($data);
+        header('location: /page/admin');
+      }
+      public function hideSubmit() {
+        $data['id'] = $_POST['id'];
+        $data['visibility'] = 'hidden';
+        $this->dishesTable->save($data);
+        header('location: /page/admin');
+      }
     public function list() {
         if(isset ($_GET['id'])) {
         $dishes = $this->dishesTable->find( 'categoryId', $_GET['id']);
-        $title= $dishes[0]->getCategory()->name;
+        $title = $dishes[0]->getCategory()->name;
     }
     else { 
             $dishes = $this->dishesTable->findAll();
@@ -41,9 +53,11 @@ class Dish {
         }
     public function show() {
         $dish = $this->dishesTable->find( 'id', $_GET['id']);
+        //if user clicks view more, show all the reviews
         if (isset($_GET['show'])) {
             $reviews = $this->reviewsTable->find( 'dishId', $_GET['id']);
         }
+        //otherwise limit number to 3 best reviews 
         else {
         $reviews = $this->reviewsTable->findSome( 'dishId', $_GET['id'], 'rating');
         }
@@ -71,6 +85,9 @@ class Dish {
             'template' => 'editdish.html.php',
             'variables' => [
                 'categories' => $categories,
+                /* Fetches the value of $result and returns 'null'
+                 if it does not exist.
+                https://www.php.net/manual/en/migration70.new-features.php*/
                 'dish' => $result  ?? null
             ],
             'title' => 'Edit dish'

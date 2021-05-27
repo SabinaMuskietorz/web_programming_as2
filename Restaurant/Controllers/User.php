@@ -23,9 +23,21 @@ class User {
     public function home(){
         return [
             'template' => 'home.html.php',
-            'title' => 'Kate kitchen'
+            'title' => 'Kate\'s kitchen'
         ];
     }
+    public function allowSubmit() {
+        $data['id'] = $_POST['id'];
+        $data['role'] = 'admin';
+        $this->usersTable->save($data);
+        header('location: /user/list');
+      }
+      public function blockSubmit() {
+        $data['id'] = $_POST['id'];
+        $data['role'] = '';
+        $this->usersTable->save($data);
+        header('location: /user/list');
+      }
     public function editSubmit() {
         $data = $_POST['user'];
         if(isset($data['password'])) {
@@ -84,20 +96,15 @@ class User {
                        //if person is a normal user it prints hello to user and sets session to client
                     $_SESSION ['client'] = true;
                     header('location: /page/home');
-                   
-                    }
+                   }
                 }
                 //If they didn't type in correct credentials display an error message
                 else {
                     $errors = [];
                     $errors[] = 'Login failed';
                     return $this->login($errors);
-                    
-                    }
-
                 }
-               
-                //header('location: /page/home');
+            }
             }
             public function login($errors=[]) {
                 return [

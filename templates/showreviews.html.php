@@ -2,6 +2,7 @@
     <h2><?=$dish->name?></h2>
     <?php
     foreach ($reviews as $review) { 
+        //show reviews approved by admin
         if($review->visibility == 'shown') {
         ?>
     <ul>
@@ -14,10 +15,12 @@
         </li>
     </ul>
     <?php }} ?>
+    <!--to view more reviews-->
     <a href="/dish/show?id=<?=$_GET['id']?>&show=all">View more</a>
 
 
     <form action="/review/edit" method="POST">
+    
         <?php if(isset($review)) { ?>
         <input type="hidden" name="review[id]" value="" />
         <?php } ?>

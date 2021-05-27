@@ -6,21 +6,34 @@ require 'adminnav.html.php';
     <table>
         <thead>
             <tr>
+                <th>Username</th>
                 <th style="width: 5%">&nbsp;</th>
-                <th style="width: 15%">&nbsp;</th>
+                <th style="width: 5%">&nbsp;</th>
                 <th style="width: 5%">&nbsp;</th>
                 <th style="width: 5%">&nbsp;</th>
             </tr>
             <?php
-
-foreach ($users as $user) { 
-    ?>
+            foreach ($users as $user) { 
+                ?>
             <tr>
                 <td><?=$user->username?></td>
-                <td><?=$user->role?></td>
-
-
-                <td><a style="float: right" href="/user/edit?id=<?=$user->id?>">Edit</a></td>
+                <?php
+                if ($user->role == '') { ?>
+                <td>
+                    <form action="/user/allow" method="POST">
+                        <input type="hidden" name="id" value="<?=$user->id?>" />
+                        <input type="submit" value="Allow" />
+                    </form>
+                </td>
+                <?php } 
+                if ($user->role == 'admin') { ?>
+                <td>
+                    <form action="/user/block" method="POST">
+                        <input type="hidden" name="id" value="<?=$user->id?>" />
+                        <input type="submit" value="Block" />
+                    </form>
+                </td>
+                <?php } ?>
                 <td>
                     <form action="/user/delete" method="POST">
                         <input type="hidden" name="id" value="<?=$user->id?>" />
@@ -29,8 +42,8 @@ foreach ($users as $user) {
                 </td>
             </tr>
             <?php
-    }
-    ?>
+            }
+            ?>
         </thead>
     </table>
 </section>
