@@ -71,7 +71,9 @@ class User {
                 //var_dump($passStmt);
                 $user = $passStmt[0]??NULL;
                 if ($user == NULL) {
-                    return $this->login();
+                    $errors = [];
+                    $errors[] = 'Login failed';
+                    return $this->login($errors);
                 }
                 //check if password matches the username in the database 
                 if (password_verify($_POST['password'], $user->password)) {
