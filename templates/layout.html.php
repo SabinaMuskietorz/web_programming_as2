@@ -81,7 +81,7 @@
 
 
 	<footer>
-		&copy; Kate's Kitchen <?= date("Y");?>
+		&copy; Kate's Kitchen 2017 - <?= date("Y");?>
 	</footer>
 </body>
 
