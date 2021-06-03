@@ -35,8 +35,6 @@ class Routes implements \PRO2021\Routes {
 	public function checkLogin($route) {
 		session_start();
 		$loginRoutes = [];
-
-		//$loginRoutes['/review/editSubmit'] =  true;
 		$requiresLogin = $loginRoutes[$route] ?? false;
 		if ($requiresLogin && !isset($_SESSION['loggedin'])) {
 			header('location: /user/login');
@@ -50,7 +48,7 @@ class Routes implements \PRO2021\Routes {
 		$loginRoutes['dish/delete'] = true;
 		$loginRoutes['review/edit'] =  true;
 		$loginRoutes['review/delete'] = true;
-		//$loginRoutes['user/edit'] =  true;
+		$loginRoutes['user/edit'] =  true;
 		$loginRoutes['user/delete'] = true;
 		$loginRoutes['categor/edit'] =  true;
 		$loginRoutes['category/delete'] = true;
