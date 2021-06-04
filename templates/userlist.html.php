@@ -18,6 +18,7 @@ require 'adminnav.html.php';
             <tr>
                 <td><?=$user->username?></td>
                 <?php
+                //if user is not an admin, you can give him permissions
                 if ($user->role == '') { ?>
                 <td>
                     <form action="/user/allow" method="POST">
@@ -26,6 +27,7 @@ require 'adminnav.html.php';
                     </form>
                 </td>
                 <?php } 
+                //if user is currently an admin, you can block his permissions
                 if ($user->role == 'admin') { ?>
                 <td>
                     <form action="/user/block" method="POST">
@@ -35,6 +37,7 @@ require 'adminnav.html.php';
                 </td>
                 <?php } ?>
                 <td>
+                <!--button to delete the user-->
                     <form action="/user/delete" method="POST">
                         <input type="hidden" name="id" value="<?=$user->id?>" />
                         <input type="submit" value="Delete" />

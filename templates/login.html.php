@@ -1,5 +1,6 @@
 <h2>Log in</h2>
 <?php
+//print error if log in fails
 foreach ($errors as $error) {
     ?>
     <p><?=$error?></p>

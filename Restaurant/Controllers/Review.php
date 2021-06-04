@@ -6,22 +6,27 @@ class Review {
         $this->reviewsTable = $reviewsTable;
         $this->dishesTable = $dishesTable;
     }
+    //delete review
     public function deleteSubmit() {
         $reviews = $this->reviewsTable->delete($_POST['id']);
 
         header('location: /review/list');
     }
+    //make review visible for customers
     public function approveSubmit() {
         $data['id'] = $_POST['id'];
         $data['visibility'] = 'shown';
         $this->reviewsTable->save($data);
         header('location: /review/list');
       }
+      //list the reviews
     public function list() {
         if(isset ($_GET['id'])) {
+            //if dish was selected, list only the reviews for that particular dish
         $reviews = $this->reviewsTable->find( 'dishId', $_GET['id'], 'rating');
         $title = $reviews[0]->getDish()->name;
     }
+    //otherwise list all reviews
         else { 
             $reviews = $this->reviewsTable->findAll();
             $title = 'Reviews';
@@ -41,6 +46,7 @@ class Review {
             'title' => 'Kate kitchen'
         ];
     }
+    //save or edit
     public function editSubmit() {
         $data = $_POST['review'];
         $this->reviewsTable->save($data);

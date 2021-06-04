@@ -5,6 +5,7 @@ class Category {
     public function __construct($categoriesTable) {
         $this->categoriesTable = $categoriesTable;
     }
+    //list categories
     public function list() {
         $categories = $this->categoriesTable->findAll();
         return [
@@ -15,18 +16,21 @@ class Category {
             ]
             ];
     }
+    //make categories visible for customers
     public function appearSubmit() {
         $data['id'] = $_POST['id'];
         $data['visibility'] = 'shown';
         $this->categoriesTable->save($data);
         header('location: /category/list');
       }
+      //make categories hidden from customers
       public function hideSubmit() {
         $data['id'] = $_POST['id'];
         $data['visibility'] = 'hidden';
         $this->categoriesTable->save($data);
         header('location: /category/list');
       }
+      //delete category
     public function deleteSubmit() {
         $categories = $this->categoriesTable->delete($_POST['id']);
 
@@ -38,6 +42,7 @@ class Category {
             'title' => 'Kate kitchen'
         ];
     }
+    //add or edit if record exists
     public function editSubmit() {
         $data = $_POST['category'];
         $this->categoriesTable->save($data);

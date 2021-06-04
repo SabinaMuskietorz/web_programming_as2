@@ -5,6 +5,7 @@ class DatabaseTable {
     private $table;
     private $primaryKey;
 
+    //constructor
     public function __construct($pdo, $table, $primaryKey, $entityClass, $entityConstructor) {
         $this->pdo = $pdo;
         $this->table = $table;
@@ -13,13 +14,14 @@ class DatabaseTable {
         $this->entityConstructor = $entityConstructor;
     }
 
-
+//finds all the records
 public function findAll() {
     $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table);
     $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
     $stmt->execute();
     return $stmt->fetchAll();
 }
+//finds one record
 public function find($field, $value) {
     $stmt = $this->pdo->prepare('SELECT * FROM   '   .$this->table. '   WHERE   ' .$field. '    = :value    ');
     $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
@@ -34,7 +36,7 @@ public function findSome($field, $value, $ordervalue) {
     return $stmt->fetchAll();
 }
 
-
+//insert record
 public function insert($record) {
     $keys = array_keys($record);
     $values = implode(', ', $keys);
@@ -42,6 +44,7 @@ public function insert($record) {
     $stmt = $this->pdo->prepare(' INSERT INTO ' . $this->table . ' ( ' . $values . ' ) VALUES ( :' . $valuesWithColon . ' ) ');
     $stmt->execute($record);
 }
+//delete record
 public function delete($id) {
     $stmt = $this->pdo->prepare('DELETE FROM ' . $this->table . ' WHERE ' . $this->primaryKey . ' = :id');
     $criteria = [
@@ -49,6 +52,7 @@ public function delete($id) {
     ];
     $stmt->execute($criteria);
 }
+//update record
 public function update($record) {
 
     $query = 'UPDATE ' . $this->table . ' SET ';
@@ -67,10 +71,13 @@ public function update($record) {
 
     $stmt->execute($record);
 }
+//save record
 public function save($record) {
+    //try to insert
     try {
         $this->insert($record);
     }
+    //if already exist then update
     catch ( \ Exception $e) {
         $this->update($record);
     }

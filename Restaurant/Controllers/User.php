@@ -26,12 +26,14 @@ class User {
             'title' => 'Kate\'s kitchen'
         ];
     }
+    //make user an admin
     public function allowSubmit() {
         $data['id'] = $_POST['id'];
         $data['role'] = 'admin';
         $this->usersTable->save($data);
         header('location: /user/list');
       }
+      //block user's permission
       public function blockSubmit() {
         $data['id'] = $_POST['id'];
         $data['role'] = '';
@@ -64,6 +66,7 @@ class User {
                 'title' => 'Save user'
             ];
         }
+        //user's login
         public function loginSubmit() {
             if (isset($_POST['submit'])) {
                 //find the right user in database, where the username matches the typed in username by the user
@@ -88,15 +91,13 @@ class User {
                     $a === $b	Identical, so if $a is equal to $b, and they are of the same type.
                     https://www.php.net/manual/en/language.operators.comparison.php*/
                     if($user->role === 'admin') {
-                        /* if person is an admin it sets the session to admin and prints hello to admin
+                        /* if person is an admin it sets the session to admin
                         and directs them to admin page */
                         $_SESSION ['admin'] = true;
                         header('location: /page/admin');
                        
                        }
                    else {
-                       //if person is a normal user it prints hello to user and sets session to client
-                    $_SESSION ['client'] = true;
                     header('location: /page/home');
                    }
                 }

@@ -31,7 +31,7 @@ class Routes implements \PRO2021\Routes {
 		return $this->categoriesTable->findAll();
 	}
 
-	
+	//check if user is logged in
 	public function checkLogin($route) {
 		session_start();
 		$loginRoutes = [];
@@ -41,6 +41,7 @@ class Routes implements \PRO2021\Routes {
 			exit();
 		}
 	}
+	//check if user is an admin with permissions
 	public function checkPermission($route) {
 		$loginRoutes = [];
 
@@ -52,7 +53,7 @@ class Routes implements \PRO2021\Routes {
 		$loginRoutes['user/delete'] = true;
 		$loginRoutes['categor/edit'] =  true;
 		$loginRoutes['category/delete'] = true;
-
+        //if page requires permission and person is not an admin direct them to customer's homepage
 		$requiresPermission = $loginRoutes[$route] ?? false;
 		if ($requiresPermission && !isset($_SESSION['admin'])) {
 			header('location: /page/home');

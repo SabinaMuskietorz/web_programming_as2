@@ -10,6 +10,7 @@ class Dish {
         $this->reviewsTable = $reviewsTable;
         $this->categoriesTable = $categoriesTable;
     }
+    //delete dish
     public function deleteSubmit() {
         $dishes = $this->dishesTable->delete($_POST['id']);
         header('location: /page/admin');
@@ -21,23 +22,28 @@ class Dish {
             'variables' => []
         ];
     }
+    //make dish visible for customers
     public function appearSubmit() {
         $data['id'] = $_POST['id'];
         $data['visibility'] = 'shown';
         $this->dishesTable->save($data);
         header('location: /page/admin');
       }
+      //hide dish from customers
       public function hideSubmit() {
         $data['id'] = $_POST['id'];
         $data['visibility'] = 'hidden';
         $this->dishesTable->save($data);
         header('location: /page/admin');
       }
+      //list all dishes
     public function list() {
         if(isset ($_GET['id'])) {
+            //find dishes in specific category if selected
         $dishes = $this->dishesTable->find( 'categoryId', $_GET['id']);
         $title = $dishes[0]->getCategory()->name;
     }
+    //if category not selected, list all dishes
     else { 
             $dishes = $this->dishesTable->findAll();
             $title = 'Dishes';
@@ -70,7 +76,7 @@ class Dish {
             ] 
             ];
     }
-
+    //save dish or edit if already exists in database
     public function editSubmit() {
         $data = $_POST['dish'];
         $this->dishesTable->save($data);

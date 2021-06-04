@@ -8,6 +8,8 @@ foreach ($dishes as $dish) {
             <div class="details">
                 <h3><?= '£' . $dish->price; ?></h3>
                 <h2><?= $dish->name; ?></h2>
+                <!--nl2br — Inserts HTML line breaks before all newlines in a string
+                https://www.php.net/manual/en/function.nl2br.php-->
                 <p><?= nl2br($dish->description); ?></p>
                 <a href="/dish/show?id=<?=$dish->id?>"> Display reviews </a>
             </div>
@@ -15,7 +17,5 @@ foreach ($dishes as $dish) {
         <?php
     }
 } 
-
-
 ?>
 </ul>
