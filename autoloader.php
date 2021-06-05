@@ -6,3 +6,4 @@ function autoload($className) {
 	require $file;
 }
 spl_autoload_register('autoload');
+?>

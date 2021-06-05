@@ -7,20 +7,17 @@
         ?>
     <ul>
         <li>
-        <!--how to make larger spaces https://www.wikihow.com/Insert-Spaces-in-HTML -->
-        <strong><?=$review->reviewText?>&ensp;</strong>
+            <!--how to make larger spaces https://www.wikihow.com/Insert-Spaces-in-HTML -->
+            <strong><?=$review->reviewText?>&ensp;</strong>
             Rating:<strong>&ensp;<?=$review->rating?>&ensp;</strong>
             Posted by:<strong>&ensp;<?=$review->name?></strong>
-            
         </li>
     </ul>
     <?php }} ?>
     <!--to view more reviews-->
     <a href="/dish/show?id=<?=$_GET['id']?>&show=all">View more</a>
 
-
     <form action="/review/edit" method="POST">
-    
         <?php if(isset($review)) { ?>
         <input type="hidden" name="review[id]" value="" />
         <?php } ?>

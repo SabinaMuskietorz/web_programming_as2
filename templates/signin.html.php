@@ -5,5 +5,5 @@
 	<input type="hidden" name="user[role]" value="<?=$user->role ?? ''?>" />
 	<label>Password</label>
 	<input type="password" name="user[password]" value="" />
-	<input type="submit" name="submit"  value="Save" />
+	<input type="submit" name="submit" value="Save" />
 </form>

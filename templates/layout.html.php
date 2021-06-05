@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<link rel="stylesheet" href="/styles.css" />
 	<title><?=$title?></title>
 </head>
+
 <body>
 	<header>
 		<section>
@@ -13,7 +15,7 @@
 				<p>Fri-Sat: 12:00-23:30</p>
 			</aside>
 			<h1>Kate's Kitchen</h1>
-			</section>
+		</section>
 	</header>
 	<nav>
 		<ul>
@@ -61,15 +63,16 @@
 			echo '<li><a href="' .$logfilechange . '">' . $loglabelchange . '</a></li>';
 			?>
 			</li>
-			</ul>
-			</nav>
+		</ul>
+	</nav>
 	<img src="/images/randombanner.php" />
 	<main class="sidebar">
 		<?=$output?>
-		</main>
-		<footer>
+	</main>
+	<footer>
 		<!--updating the copyright so it will be always the current year-->
 		&copy; Kate's Kitchen 2017 - <?= date("Y");?>
 	</footer>
 </body>
+
 </html>

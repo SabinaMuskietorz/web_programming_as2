@@ -37,7 +37,7 @@ require 'adminnav.html.php';
                 </td>
                 <?php } ?>
                 <td>
-                <!--button to delete the user-->
+                    <!--button to delete the user-->
                     <form action="/user/delete" method="POST">
                         <input type="hidden" name="id" value="<?=$user->id?>" />
                         <input type="submit" value="Delete" />
