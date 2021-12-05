@@ -65,7 +65,7 @@
 			</li>
 		</ul>
 	</nav>
-	<img src="/images/randombanner.php" />
+	<!-- <img src="/images/randombanner.php" /> -->
 	<main class="sidebar">
 		<?=$output?>
 	</main>
