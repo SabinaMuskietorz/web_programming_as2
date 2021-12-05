@@ -78,7 +78,7 @@ public function save($record) {
         $this->insert($record);
     }
     //if already exist then update
-    catch ( \ Exception $e) {
+    catch (\Exception $e) {
         $this->update($record);
     }
 }
