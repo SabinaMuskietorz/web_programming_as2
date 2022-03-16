@@ -1,5 +1,5 @@
 <?php
-namespace Hairdresser\Controllers;
+namespace Restaurant\Controllers;
 class Dish {
     private $dishesTable;
     private $reviewsTable;

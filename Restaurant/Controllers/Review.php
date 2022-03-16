@@ -1,5 +1,5 @@
 <?php
-namespace Hairdresser\Controllers;
+namespace Restaurant\Controllers;
 class Review {
     private $reviewsTable;
     public function __construct($reviewsTable, $dishesTable) {

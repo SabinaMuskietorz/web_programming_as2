@@ -1,5 +1,5 @@
 <?php
-namespace Hairdresser;
+namespace Restaurant;
 
 class Routes implements \PRO2021\Routes {
 	//global variables
@@ -9,18 +9,18 @@ class Routes implements \PRO2021\Routes {
 	private $reviewsTable;
 	public function getController($name) {
 		require '../dbconnection.php';
-		$this->usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'id',  '\Hairdresser\Entity\User', $entityConstructor = []);
-		$this->categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id', '\Hairdresser\Entity\Category', $entityConstructor = []);
-		$this->dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', '\Hairdresser\Entity\Dish', [$this->categoriesTable]);
-		$this->reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'id', '\Hairdresser\Entity\Review', [ $this->dishesTable]);
+		$this->usersTable = new \PRO2021\DatabaseTable($pdo, 'user', 'id',  '\Restaurant\Entity\User', $entityConstructor = []);
+		$this->categoriesTable = new \PRO2021\DatabaseTable($pdo, 'category', 'id', '\Restaurant\Entity\Category', $entityConstructor = []);
+		$this->dishesTable = new \PRO2021\DatabaseTable($pdo, 'dish', 'id', '\Restaurant\Entity\Dish', [$this->categoriesTable]);
+		$this->reviewsTable = new \PRO2021\DatabaseTable($pdo, 'review', 'id', '\Restaurant\Entity\Review', [ $this->dishesTable]);
         
      
 		$controllers = [];
-		$controllers['category'] = new \Hairdresser\Controllers\Category($this->categoriesTable);
-		$controllers['user'] = new \Hairdresser\Controllers\User($this->usersTable);
-		$controllers['dish'] = new \Hairdresser\Controllers\Dish($this->dishesTable, $this->reviewsTable, $this->categoriesTable);
-		$controllers['review'] = new \Hairdresser\Controllers\Review($this->reviewsTable,  $this->dishesTable);
-		$controllers['page'] = new \Hairdresser\Controllers\Page($this->dishesTable, $this->categoriesTable, $this->reviewsTable, $this->usersTable);
+		$controllers['category'] = new \Restaurant\Controllers\Category($this->categoriesTable);
+		$controllers['user'] = new \Restaurant\Controllers\User($this->usersTable);
+		$controllers['dish'] = new \Restaurant\Controllers\Dish($this->dishesTable, $this->reviewsTable, $this->categoriesTable);
+		$controllers['review'] = new \Restaurant\Controllers\Review($this->reviewsTable,  $this->dishesTable);
+		$controllers['page'] = new \Restaurant\Controllers\Page($this->dishesTable, $this->categoriesTable, $this->reviewsTable, $this->usersTable);
 		return $controllers[$name];
 	}
     
