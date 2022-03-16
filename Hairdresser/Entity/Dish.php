@@ -1,5 +1,5 @@
 <?php
-namespace Restaurant\Entity;
+namespace Hairdresser\Entity;
 class Dish {
 	public $categoriesTable;
 	public $description;

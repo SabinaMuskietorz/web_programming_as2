@@ -1,5 +1,5 @@
 <?php
-namespace Restaurant\Entity;
+namespace Hairdresser\Entity;
 class User {
     public $id;
 	public $username;
