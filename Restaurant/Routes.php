@@ -33,7 +33,6 @@ class Routes implements \PRO2021\Routes {
 
 	//check if user is logged in
 	public function checkLogin($route) {
-		session_start();
 		$loginRoutes = [];
 		$requiresLogin = $loginRoutes[$route] ?? false;
 		if ($requiresLogin && !isset($_SESSION['loggedin'])) {
